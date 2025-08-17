@@ -1,0 +1,20 @@
+[tools]
+"aqua:astral-sh/uv" = "latest"
+"aqua:aws/aws-cli" = "latest"
+"aqua:jqlang/jq" = "latest"
+"aqua:rhysd/actionlint" = "latest"
+deno = "2.3"
+github-cli = "latest"
+helix = "latest"
+marksman = "latest"
+node = "lts"
+"npm:@openai/codex" = "latest"
+"npm:ccusage" = "latest"
+"npm:corepack" = "latest"
+rust = { version  = "latest", profile = "default", components = "rust-analyzer" }
+
+[settings]
+idiomatic_version_file_enable_tools = []
+
+[settings.python]
+uv_venv_auto = true

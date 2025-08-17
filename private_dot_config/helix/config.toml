@@ -1,0 +1,12 @@
+theme = "catppuccin_macchiato"
+
+[editor]
+
+[keys.insert]
+C-g = "normal_mode"
+C-p = "move_line_up"
+C-n = "move_line_down"
+C-b = "move_char_left"
+C-f = "move_char_right"
+C-a = "goto_line_start"
+C-e = "goto_line_end_newline"

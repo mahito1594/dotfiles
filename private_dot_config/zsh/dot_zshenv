@@ -1,0 +1,50 @@
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_STATE_HOME=$HOME/.local/state
+
+export PATH="${HOME}/.local/bin:${PATH}"
+
+# Zim
+export ZIM_CONFIG_FILE="${XDG_CONFIG_HOME}/zsh/.zimrc"
+
+# asdf
+export ASDF_CONFIG_FILE="${XDG_CONFIG_HOME}/asdf/asdfrc"
+export ASDF_DATA_DIR="${XDG_DATA_HOME}/asdf"
+
+# AWS CLI
+export AWS_SHARED_CREDENTIALS_FILE="${XDG_CONFIG_HOME}/aws/credentials"
+export AWS_CONFIG_FILE="${XDG_CONFIG_HOME}/aws/config"
+
+# Azure CLI
+export AZURE_CONFIG_DIR="${XDG_CONFIG_HOME}/azure"
+
+# Rust#Cargo
+export CARGO_HOME="${XDG_DATA_HOME}/cargo"
+
+# Elm
+export ELM_HOME="${XDG_DATA_HOME}/elm"
+
+# Docker
+export DOCKER_CONFIG="${HOME}/.docker"
+
+# Node.js
+export NODE_REPL_HISTORY="${XDG_DATA_HOME}/node_repl_history"
+export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
+
+# Ruby#Bundler
+export BUNDLE_USER_CONFIG="${XDG_CONFIG_HOME}/bundle"
+export BUNDLE_USER_CACHE="${XDG_CACHE_HOME}/bundle"
+export BUNDLE_USER_PLUGIN="${XDG_DATA_HOME}/bundle"
+
+# Rust#Cargo
+export CARGO_HOME="${XDG_CONFIG_HOME}/cargo"
+
+# Rust#Rustup
+export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
+
+# SQLite
+export SQLITE_HISTORY="${XDG_DATA_HOME}/sqlite_history"
+
+# Local Env Vars
+[ -f $ZDOTDIR/.zshenv.local ] && source $ZDOTDIR/.zshenv.local
