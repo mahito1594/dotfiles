@@ -12,6 +12,7 @@ node = "lts"
 "npm:ccusage" = "latest"
 "npm:corepack" = "latest"
 rust = { version  = "latest", profile = "default", components = "rust-analyzer" }
+taplo = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = []
