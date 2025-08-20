@@ -1,0 +1,17 @@
+[general]
+import = [
+  "~/.config/alacritty/themes/catppuccin_macchiato.toml"
+]
+
+[window]
+dimensions = { columns = 132, lines = 43 }
+padding = { x = 2, y = 2 }
+option_as_alt = "Both"
+
+[font]
+normal = { family = "PlemolJP35 Console NF", style = "Regular" }
+size = 15
+
+[[keyboard.bindings]]
+key = "¥"
+chars = "\\"
