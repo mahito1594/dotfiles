@@ -5,7 +5,6 @@
 "aqua:rhysd/actionlint" = "latest"
 deno = "2.3"
 github-cli = "latest"
-helix = "latest"
 marksman = "latest"
 node = "lts"
 "npm:@openai/codex" = "latest"
