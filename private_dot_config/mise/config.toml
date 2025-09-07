@@ -10,6 +10,7 @@ node = "lts"
 "npm:@openai/codex" = "latest"
 "npm:ccusage" = "latest"
 "npm:corepack" = "latest"
+"npm:vscode-langservers-extracted" = "latest"
 rust = { version  = "latest", profile = "default", components = "rust-analyzer" }
 taplo = "latest"
 
