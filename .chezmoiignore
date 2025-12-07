@@ -1,2 +1,5 @@
 README.md
 LICENSE
+
+# Zsh local config (contains secrets)
+.config/zsh/.zshenv.local
