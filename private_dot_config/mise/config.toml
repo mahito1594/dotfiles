@@ -3,7 +3,7 @@
 "aqua:aws/aws-cli" = "latest"
 "aqua:jqlang/jq" = "latest"
 "aqua:rhysd/actionlint" = "latest"
-deno = "2.3"
+deno = "2"
 github-cli = "latest"
 marksman = "latest"
 node = "lts"
