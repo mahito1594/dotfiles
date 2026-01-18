@@ -1,0 +1,19 @@
+[init]
+	defaultBranch = main
+[user]
+	name = Mahito TANNO
+	email = mahito@presche.me
+[core]
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+[merge]
+	conflictStyle = zdiff3
+[include]
+	path = ~/.config/git/aliases
+[fetch]
+	prune = true
+[url "git@github.com:"]
+	insteadOf = https://github.com/
