@@ -8,8 +8,8 @@ github-cli = "latest"
 marksman = "latest"
 node = "lts"
 "npm:ccusage" = "latest"
-"npm:corepack" = "latest"
 "npm:vscode-langservers-extracted" = "latest"
+pnpm = "latest"
 rust = { version  = "latest", profile = "default", components = "rust-analyzer" }
 taplo = "latest"
 
@@ -18,3 +18,6 @@ idiomatic_version_file_enable_tools = []
 
 [settings.python]
 uv_venv_auto = true
+
+[settings.npm]
+package_manager = "pnpm"
