@@ -3,3 +3,9 @@ LICENSE
 
 # Zsh local config (contains secrets)
 .config/zsh/.zshenv.local
+
+# Claude Code settings
+.claude/**
+!.claude/
+!.claude/CLAUDE.md
+!.claude/output-styles/**
