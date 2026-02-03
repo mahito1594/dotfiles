@@ -3,6 +3,7 @@
 "aqua:aws/aws-cli" = "latest"
 "aqua:jqlang/jq" = "latest"
 "aqua:rhysd/actionlint" = "latest"
+"cargo:cargo-binstall" = "latest"
 deno = "2"
 github-cli = "latest"
 marksman = "latest"

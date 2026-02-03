@@ -19,9 +19,6 @@ export AWS_CONFIG_FILE="${XDG_CONFIG_HOME}/aws/config"
 # Azure CLI
 export AZURE_CONFIG_DIR="${XDG_CONFIG_HOME}/azure"
 
-# Rust#Cargo
-export CARGO_HOME="${XDG_DATA_HOME}/cargo"
-
 # Elm
 export ELM_HOME="${XDG_DATA_HOME}/elm"
 
