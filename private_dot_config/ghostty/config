@@ -8,3 +8,4 @@ window-subtitle = working-directory
 window-height = 43
 window-width = 132
 initial-window = false
+macos-option-as-alt = left
