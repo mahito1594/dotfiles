@@ -1,4 +1,4 @@
-# Fundamenta guidelines
+# Fundamental guidelines
 
 ## Working Approach
 
