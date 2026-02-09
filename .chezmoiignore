@@ -4,6 +4,9 @@ LICENSE
 # Zsh local config (contains secrets)
 .config/zsh/.zshenv.local
 
+# mise-en-place local config
+.config/mise/config.local.toml
+
 # Claude Code settings
 .claude/**
 !.claude/
