@@ -1,18 +1,24 @@
 [tools]
 "aqua:astral-sh/uv" = "latest"
 "aqua:aws/aws-cli" = "latest"
+"aqua:BurntSushi/ripgrep" = "latest"
+"aqua:dandavison/delta" = "latest"
+"aqua:jesseduffield/lazygit" = "latest"
 "aqua:jqlang/jq" = "latest"
+"aqua:junegunn/fzf" = "latest"
 "aqua:rhysd/actionlint" = "latest"
-"cargo:cargo-binstall" = "latest"
+"aqua:sharkdp/bat" = "latest"
+"aqua:sharkdp/fd" = "latest"
+"aqua:suzuki-shunsuke/pinact" = "latest"
+"aqua:x-motemen/ghq" = "latest"
+"aqua:zellij-org/zellij" = "latest"
+cargo-binstall = "latest"
 deno = "2"
+eza = "latest"
 github-cli = "latest"
-marksman = "latest"
 node = "lts"
-"npm:ccusage" = "latest"
-"npm:vscode-langservers-extracted" = "latest"
 pnpm = "latest"
-rust = { version  = "latest", profile = "default", components = "rust-analyzer" }
-taplo = "latest"
+rust = { version = "latest", profile = "default", components = "rust-analyzer" }
 
 [settings]
 idiomatic_version_file_enable_tools = []
