@@ -1,0 +1,135 @@
+{
+  "version": 3,
+  "lines": [
+    [
+      {
+        "id": "1",
+        "type": "model",
+        "color": "",
+        "rawValue": true,
+        "merge": "no-padding",
+        "metadata": {
+          "display": "time"
+        }
+      },
+      {
+        "id": "af74b4c3-de0e-454f-8ff9-4ff0cfc9018d",
+        "type": "separator",
+        "character": "|"
+      },
+      {
+        "id": "50beb216-fbf3-41a9-8b0c-711f9ac344d6",
+        "type": "output-style",
+        "color": "",
+        "rawValue": false
+      },
+      {
+        "id": "2",
+        "type": "separator"
+      },
+      {
+        "id": "3",
+        "type": "context-length",
+        "color": "yellow",
+        "rawValue": false
+      },
+      {
+        "id": "ea8f6a1e-471f-4149-bca0-f50b7a8037c8",
+        "type": "separator",
+        "character": " "
+      },
+      {
+        "id": "7733dbe3-38a6-4ccc-b74f-64a6e1e6adf5",
+        "type": "context-percentage",
+        "color": "yellow",
+        "rawValue": true
+      },
+      {
+        "id": "8936ea1c-6ce4-450a-9061-8d09f4b96ea5",
+        "type": "separator"
+      },
+      {
+        "id": "d3e459fe-a19c-40b6-8224-adb56e2559df",
+        "type": "custom-command",
+        "color": "brightBlue",
+        "commandPath": "basename $(pwd)",
+        "timeout": 1000
+      },
+      {
+        "id": "6b0e70bf-2db2-45c7-b94d-47b62a2f8a0b",
+        "type": "separator",
+        "character": "-"
+      },
+      {
+        "id": "5",
+        "type": "git-branch",
+        "color": "brightBlue"
+      }
+    ],
+    [
+      {
+        "id": "ee2e736f-1e15-47e8-b28c-cd411f8e5c0f",
+        "type": "tokens-input",
+        "color": "cyan"
+      },
+      {
+        "id": "1afe1f55-1a48-4563-83a6-16c7222675d5",
+        "type": "separator",
+        "character": ","
+      },
+      {
+        "id": "323517e1-5ae5-474b-8c70-eb83797d4b5d",
+        "type": "tokens-output",
+        "color": "magenta"
+      },
+      {
+        "id": "624d8904-d858-47f0-ae43-0192418b1500",
+        "type": "separator",
+        "character": ","
+      },
+      {
+        "id": "bba786f9-d4aa-4e88-9bfb-e183a7defbab",
+        "type": "tokens-cached",
+        "color": "brightBlack"
+      },
+      {
+        "id": "d2144d4e-f740-4b29-ba6e-c3c8032f23e9",
+        "type": "separator",
+        "character": "|"
+      },
+      {
+        "id": "60d0e100-89ab-4751-99ec-dfe6a0ed3d9b",
+        "type": "tokens-total",
+        "color": "yellow"
+      }
+    ],
+    [
+      {
+        "id": "ce39f7f8-7d00-4f96-9cff-d15289bf50c8",
+        "type": "claude-session-id",
+        "color": "green",
+        "rawValue": false,
+        "metadata": {
+          "display": "progress"
+        }
+      }
+    ]
+  ],
+  "flexMode": "full-minus-40",
+  "compactThreshold": 60,
+  "colorLevel": 2,
+  "inheritSeparatorColors": false,
+  "globalBold": false,
+  "powerline": {
+    "enabled": false,
+    "separators": [
+      ""
+    ],
+    "separatorInvertBackground": [
+      false
+    ],
+    "startCaps": [],
+    "endCaps": [],
+    "autoAlign": false
+  }
+}

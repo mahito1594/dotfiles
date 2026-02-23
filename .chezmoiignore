@@ -12,3 +12,4 @@ LICENSE
 !.claude/
 !.claude/CLAUDE.md
 !.claude/output-styles/**
+!.claude/settings.json

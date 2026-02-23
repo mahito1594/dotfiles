@@ -1,0 +1,64 @@
+{
+  "env": {
+    "DISABLE_AUTOUPDATER": "1"
+  },
+  "sandbox": {
+    "enable": true,
+    "autoAllowBashIfSandboxed": true,
+    "excludedCommands": [
+      "git *",
+      "gh *"
+    ],
+    "network": {
+      "allowLocalBinding": true,
+      "allowDomains": [
+        "github.com"
+      ]
+    }
+  },
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:docs.github.com)",
+      "WebFetch(domain:api.github.com)",
+      "Bash(gh issue list)",
+      "Bash(gh issue view *)",
+      "mcp__plugin_context7_context7__resolve-library-id",
+      "mcp__plugin_context7_context7__query-docs"
+    ],
+    "deny": [
+      "Bash(sudo *)",
+      "Bash(rm -rf *)",
+      "Bash(curl *)",
+      "Bash(git push *)",
+      "Bash(git reset *)",
+      "Bash(git rebase *)",
+      "Bash(psql *)",
+      "Bash(mysql *)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(~/.config/zsh/.zshenv)",
+      "Read(~/.config/zsh/.zshenv.local)"
+    ],
+    "ask": [
+      "Bash(brew *)",
+      "Bash(mise *)"
+    ],
+    "defaultMode": "plan"
+  },
+  "hooks": {},
+  "statusLine": {
+    "type": "command",
+    "command": "pnpm dlx ccstatusline@latest"
+  },
+  "enabledPlugins": {
+    "context7@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true,
+    "skill-codex@skill-codex": true,
+    "claude-md-management@claude-plugins-official": true,
+    "feature-dev@claude-plugins-official": true
+  },
+  "language": "Japanese",
+  "plansDirectory": "./.claude/plans"
+}
