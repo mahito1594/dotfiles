@@ -1,20 +1,7 @@
 {
   "env": {
-    "DISABLE_AUTOUPDATER": "1"
-  },
-  "sandbox": {
-    "enable": true,
-    "autoAllowBashIfSandboxed": true,
-    "excludedCommands": [
-      "git *",
-      "gh *"
-    ],
-    "network": {
-      "allowLocalBinding": true,
-      "allowDomains": [
-        "github.com"
-      ]
-    }
+    "DISABLE_AUTOUPDATER": "1",
+    "CLAUDE_CODE_DISABLE_AUTO_MEMORY": "1"
   },
   "permissions": {
     "allow": [
@@ -60,5 +47,16 @@
     "feature-dev@claude-plugins-official": true
   },
   "language": "Japanese",
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true,
+    "network": {
+      "allowLocalBinding": true
+    },
+    "excludedCommands": [
+      "git *",
+      "gh *"
+    ]
+  },
   "plansDirectory": "./.claude/plans"
 }
