@@ -8,6 +8,7 @@
       "WebFetch(domain:github.com)",
       "WebFetch(domain:docs.github.com)",
       "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:registry.npmjs.org)",
       "Bash(gh issue list)",
       "Bash(gh issue view *)",
       "mcp__plugin_context7_context7__resolve-library-id",
@@ -44,7 +45,8 @@
     "code-simplifier@claude-plugins-official": true,
     "skill-codex@skill-codex": true,
     "claude-md-management@claude-plugins-official": true,
-    "feature-dev@claude-plugins-official": true
+    "feature-dev@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true
   },
   "language": "Japanese",
   "sandbox": {

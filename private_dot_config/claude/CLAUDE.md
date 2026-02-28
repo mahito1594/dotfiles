@@ -5,6 +5,7 @@
 - Prioritize verification over assumptions
 - Reference official documentation before answering
 - Use search tools when uncertain
+- Never execute steps assigned to the user --- delegate and wait for confirmation
 
 ## Core Beliefs
 
