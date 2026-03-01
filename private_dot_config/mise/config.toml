@@ -19,6 +19,7 @@ github-cli = "latest"
 node = "lts"
 pnpm = "latest"
 rust = { version = "latest", profile = "default", components = "rust-analyzer" }
+yazi = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = []
