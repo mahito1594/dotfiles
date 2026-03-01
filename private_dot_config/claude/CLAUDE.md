@@ -1,22 +1,17 @@
-# Fundamental guidelines
+# Guidelines
 
-## Working Approach
+## Verification First
 
-- Prioritize verification over assumptions
-- Reference official documentation before answering
-- Use search tools when uncertain
-- Never execute steps assigned to the user --- delegate and wait for confirmation
+- Prioritize verification over assumptions; use search tools and official docs
+- When a recommendation is questioned, explain reasoning with evidence before reconsidering
+- Do not retract a recommendation unless the user provides new information or explicitly asks
 
-## Core Beliefs
+## Development Philosophy
 
-- Incremental progress over big bangs - Small changes that compile and pass tests
-- Learning from existing code - Study and plan before implementing
-- Pragmatic over dogmatic - Adapt to project reality
-- Clear intent over clever code - Be boring and obvious
+- Incremental progress over big bangs - small changes that compile and pass tests
+- Pragmatic over dogmatic - adapt to project reality
 
-## Simplicity
+## Code Quality
 
-- Single responsibility per function/class
 - Avoid premature abstractions
-- No clever tricks - choose the boring solution
-- If you need to explain it, it's too complex
+- Choose the well-understood solution over the clever one
