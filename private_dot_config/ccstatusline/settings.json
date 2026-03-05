@@ -105,12 +105,22 @@
     ],
     [
       {
-        "id": "ce39f7f8-7d00-4f96-9cff-d15289bf50c8",
+        "id": "2723cb15-cf89-44d4-aeab-75902a99be41",
         "type": "claude-session-id",
+        "rawValue": true,
+        "color": "green"
+      },
+      {
+        "id": "54c62fe2-ad14-4a45-b427-e2c5bb9e3150",
+        "type": "separator"
+      },
+      {
+        "id": "ce39f7f8-7d00-4f96-9cff-d15289bf50c8",
+        "type": "session-name",
         "color": "green",
-        "rawValue": false,
+        "rawValue": true,
         "metadata": {
-          "display": "progress"
+          "display": "progress-short"
         }
       }
     ]
