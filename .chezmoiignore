@@ -8,8 +8,8 @@ LICENSE
 .config/mise/config.local.toml
 
 # Claude Code settings
-.config/claude/**
-!.config/claude/
-!.config/claude/CLAUDE.md
-!.config/claude/output-styles/**
-!.config/claude/settings.json
+.claude/**
+!.claude/
+!.claude/CLAUDE.md
+!.claude/output-styles/**
+!.claude/settings.json

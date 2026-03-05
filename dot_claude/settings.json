@@ -40,7 +40,6 @@
     ],
     "defaultMode": "plan"
   },
-  "hooks": {},
   "statusLine": {
     "type": "command",
     "command": "pnpm dlx ccstatusline@latest"
@@ -52,7 +51,8 @@
     "skill-codex@skill-codex": true,
     "claude-md-management@claude-plugins-official": true,
     "feature-dev@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": true
+    "typescript-lsp@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true
   },
   "language": "Japanese",
   "sandbox": {
