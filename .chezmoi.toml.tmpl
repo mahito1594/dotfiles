@@ -1,5 +1,12 @@
+{{- $gitName := promptStringOnce . "gitName" "Git user name" -}}
+{{- $gitEmail := promptStringOnce . "gitEmail" "Git user email" -}}
+
 [diff]
-exclude = ["scritps"]
+exclude = ["scripts"]
 
 [status]
 exclude = ["scripts"]
+
+[data]
+    gitName = {{ $gitName | quote }}
+    gitEmail = {{ $gitEmail | quote }}
