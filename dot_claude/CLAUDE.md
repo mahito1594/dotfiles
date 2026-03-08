@@ -6,6 +6,10 @@
 - When a recommendation is questioned, explain reasoning with evidence before reconsidering
 - Do not retract a recommendation unless the user provides new information or explicitly asks
 
+## Sandbox Awareness
+
+- When a command fails, consider sandbox restrictions before attributing to environment/version issues. Retry with `dangerouslyDisableSandbox: true` to confirm
+
 ## Development Philosophy
 
 - Incremental progress over big bangs - small changes that compile and pass tests
