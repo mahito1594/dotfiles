@@ -10,6 +10,7 @@
       "WebFetch(domain:docs.github.com)",
       "WebFetch(domain:api.github.com)",
       "WebFetch(domain:registry.npmjs.org)",
+      "Bash(git log *)",
       "Bash(gh issue list)",
       "Bash(gh issue view *)",
       "Bash(gh pr list *)",
@@ -52,7 +53,8 @@
     "claude-md-management@claude-plugins-official": true,
     "feature-dev@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
-    "rust-analyzer-lsp@claude-plugins-official": true
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true
   },
   "language": "Japanese",
   "sandbox": {
