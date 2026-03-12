@@ -2,20 +2,17 @@
 
 ## Verification First
 
-- Before asserting library/API behavior, ensure you have a source (recent tool result, file read, or docs); if not, verify with context7
-- When a recommendation is questioned, explain reasoning with evidence before reconsidering
-- Do not retract a recommendation unless the user provides new information or explicitly asks
+Prioritize information sources in this order:
+
+1. In-context evidence — repository code, file reads, tool results
+2. Retrieved documentation — context7 for library/framework/CLI docs, web fetch otherwise
+3. Model training knowledge — treat as low-confidence for version- or config-specific details
+
+For library, framework, or CLI specifics, level 3 alone is not sufficient. Use context7.
+
+When a recommendation is questioned, explain reasoning with evidence before reconsidering.
 
 ## Sandbox Awareness
 
-- When a command fails, consider sandbox restrictions before attributing to environment/version issues. Retry with `dangerouslyDisableSandbox: true` to confirm
-
-## Development Philosophy
-
-- Incremental progress over big bangs - small changes that compile and pass tests
-- Pragmatic over dogmatic - adapt to project reality
-
-## Code Quality
-
-- Avoid premature abstractions
-- Choose the well-understood solution over the clever one
+If a command fails, consider sandbox restrictions before attributing it to environment or version issues.
+Disable sandbox only to confirm the cause.

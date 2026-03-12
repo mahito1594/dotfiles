@@ -13,3 +13,4 @@ LICENSE
 !.claude/CLAUDE.md
 !.claude/output-styles/**
 !.claude/settings.json
+!.claude/skills/**
