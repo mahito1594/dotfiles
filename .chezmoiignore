@@ -14,3 +14,10 @@ LICENSE
 !.claude/output-styles/**
 !.claude/settings.json
 !.claude/skills/**
+
+# Opencode settings
+.config/opencode/**
+!.config/opencode/
+!.config/opencode/AGENTS.md
+!.config/opencode/opencode.json
+!.config/opencode/tui.json
