@@ -21,6 +21,7 @@ pnpm = "latest"
 rust = { version = "latest", profile = "default", components = "rust-analyzer" }
 yazi = "latest"
 cocogitto = "latest"
+bun = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = []
