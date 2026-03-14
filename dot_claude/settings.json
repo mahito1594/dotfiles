@@ -32,8 +32,8 @@
       "Bash(git rebase *)",
       "Bash(psql *)",
       "Bash(mysql *)",
-      "Read(./.env)",
-      "Read(./.env.*)",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
       "Read(~/.config/zsh/.zshenv)",
       "Read(~/.config/zsh/.zshenv.local)"
     ],
@@ -73,5 +73,6 @@
       "gh *"
     ]
   },
-  "plansDirectory": "./.claude/plans"
+  "plansDirectory": "./.claude/plans",
+  "voiceEnabled": true
 }
