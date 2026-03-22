@@ -12,7 +12,7 @@
       "WebFetch(domain:registry.npmjs.org)",
       "Bash(git diff *)",
       "Bash(git log *)",
-      "Bash(git status)",
+      "Bash(git status *)",
       "Bash(gh issue list)",
       "Bash(gh issue view *)",
       "Bash(gh pr list *)",
@@ -27,7 +27,6 @@
       "Bash(sudo *)",
       "Bash(rm -rf *)",
       "Bash(curl *)",
-      "Bash(git push *)",
       "Bash(git reset *)",
       "Bash(git rebase *)",
       "Bash(psql *)",
@@ -39,7 +38,11 @@
     ],
     "ask": [
       "Bash(brew *)",
-      "Bash(mise *)"
+      "Bash(mise *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(gh issue create *)",
+      "Bash(gh pr create *)"
     ],
     "defaultMode": "plan"
   },
@@ -74,5 +77,6 @@
     ]
   },
   "plansDirectory": "./.claude/plans",
-  "voiceEnabled": true
+  "voiceEnabled": true,
+  "model": "opusplan"
 }
