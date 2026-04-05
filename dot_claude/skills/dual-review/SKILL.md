@@ -26,7 +26,8 @@ Then read the full contents of each changed file (not just the diff) for context
 ## Phase 2: Ask Codex Configuration
 
 Use `AskUserQuestion` to ask the user **two questions in a single prompt**:
-1. Which Codex model: `gpt-5.3-codex` or `gpt-5.2`
+
+1. Which Codex model: `gpt-5.4` (recommended), `gpt-5.3-codex` (complex software engineering), or `gpt-5.4-mini` (fast/lightweight)
 2. Which reasoning effort: `xhigh`, `high`, `medium`, or `low`
 
 ## Phase 3: Run Both Reviews in Parallel
@@ -36,6 +37,7 @@ Launch Claude and Codex reviews at the same time — don't wait for one before s
 ### Claude Review
 
 Use the `feature-dev:code-reviewer` agent with these inputs:
+
 - Full contents of all changed files (not just diffs)
 - PR description and commit messages for context
 - Focus areas: bugs, logic errors, security (XSS/injection), accessibility, code quality, project convention adherence
@@ -50,6 +52,7 @@ echo '<review prompt>' | codex exec --skip-git-repo-check -m <model> --config mo
 ```
 
 The review prompt should include:
+
 - The list of changed files with instructions to read each one
 - Request for structured review with severity levels
 - Focus on high-confidence issues only
@@ -73,9 +76,9 @@ Combine both reviews into a unified report. Deduplicate findings that overlap (e
 
 ### Findings
 
-| # | Severity | Finding | Detected By |
-|---|----------|---------|-------------|
-| 1 | **Important** | Brief description | Claude / Codex / Both |
+| #   | Severity      | Finding           | Detected By           |
+| --- | ------------- | ----------------- | --------------------- |
+| 1   | **Important** | Brief description | Claude / Codex / Both |
 
 ---
 

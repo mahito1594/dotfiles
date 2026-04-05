@@ -1,7 +1,10 @@
 {
   "env": {
     "DISABLE_AUTOUPDATER": "1",
-    "CLAUDE_CODE_DISABLE_AUTO_MEMORY": "1"
+    "CLAUDE_CODE_DISABLE_AUTO_MEMORY": "1",
+    "CLAUDE_CODE_DISABLE_1M_CONTEXT": "1",
+    "CLAUDE_CODE_AUTO_COMPACT_WINDOW": "200000",
+    "CLAUDE_CODE_NO_FLICKER": "1"
   },
   "permissions": {
     "allow": [
@@ -13,10 +16,11 @@
       "Bash(git diff *)",
       "Bash(git log *)",
       "Bash(git status *)",
-      "Bash(gh issue list)",
+      "Bash(gh issue list *)",
       "Bash(gh issue view *)",
       "Bash(gh pr list *)",
       "Bash(gh pr checkout *)",
+      "Bash(gh pr checks *)",
       "Bash(gh pr view *)",
       "Bash(gh pr diff *)",
       "Bash(gh run view *)",
@@ -46,6 +50,7 @@
     ],
     "defaultMode": "plan"
   },
+  "model": "opusplan",
   "statusLine": {
     "type": "command",
     "command": "pnpm dlx ccstatusline@latest"
@@ -54,14 +59,22 @@
     "context7@claude-plugins-official": true,
     "code-review@claude-plugins-official": true,
     "code-simplifier@claude-plugins-official": true,
-    "skill-codex@skill-codex": true,
     "claude-md-management@claude-plugins-official": true,
     "feature-dev@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
     "frontend-design@claude-plugins-official": true,
-    "ruby-lsp@claude-plugins-official": true
+    "ruby-lsp@claude-plugins-official": true,
+    "codex@openai-codex": true
+  },
+  "extraKnownMarketplaces": {
+    "openai-codex": {
+      "source": {
+        "source": "github",
+        "repo": "openai/codex-plugin-cc"
+      }
+    }
   },
   "language": "Japanese",
   "sandbox": {
@@ -76,7 +89,5 @@
       "gh *"
     ]
   },
-  "plansDirectory": "./.claude/plans",
-  "voiceEnabled": true,
-  "model": "opusplan"
+  "plansDirectory": "./.claude/plans"
 }
