@@ -80,6 +80,14 @@
   "sandbox": {
     "enabled": true,
     "autoAllowBashIfSandboxed": true,
+    "filesystem": {
+      "allowWrite": [
+        "~/.npm",
+        "~/.cache/node",
+        "~/.local/share/pnpm",
+        "~/.cache/pnpm"
+      ]
+    },
     "network": {
       "allowLocalBinding": true
     },
