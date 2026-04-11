@@ -20,11 +20,13 @@ node = "lts"
 pnpm = "latest"
 rust = { version = "latest", profile = "default", components = "rust-analyzer" }
 yazi = "latest"
-cocogitto = "latest"
 bun = "latest"
+cocogitto = "latest"
+dotnet = "10"
 
 [settings]
 idiomatic_version_file_enable_tools = []
+experimental = true
 
 [settings.python]
 uv_venv_auto = true
