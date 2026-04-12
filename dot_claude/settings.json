@@ -51,7 +51,6 @@
     ],
     "defaultMode": "plan"
   },
-  "model": "opusplan",
   "statusLine": {
     "type": "command",
     "command": "pnpm dlx ccstatusline@latest"
@@ -81,6 +80,9 @@
   "sandbox": {
     "enabled": true,
     "autoAllowBashIfSandboxed": true,
+    "network": {
+      "allowLocalBinding": true
+    },
     "filesystem": {
       "allowWrite": [
         "~/.npm",
@@ -89,14 +91,12 @@
         "~/.cache/pnpm"
       ]
     },
-    "network": {
-      "allowLocalBinding": true
-    },
     "excludedCommands": [
       "codex *",
       "git *",
       "gh *"
     ]
   },
+  "advisorModel": "opus",
   "plansDirectory": "./.claude/plans"
 }
