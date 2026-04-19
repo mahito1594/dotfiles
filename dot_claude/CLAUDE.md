@@ -16,3 +16,10 @@ When a recommendation is questioned, explain reasoning with evidence before reco
 
 If a command fails, consider sandbox restrictions before attributing it to environment or version issues.
 Disable sandbox only to confirm the cause.
+
+## Response Default
+
+Questions are requests for information, not for changes.
+Do not modify files unless the message contains an explicit imperative.
+
+Prefix `Q:` or `ask:` marks a question — answer only, no file edits, no mutating commands.
