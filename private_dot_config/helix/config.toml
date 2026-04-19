@@ -1,9 +1,13 @@
 theme = "catppuccin_macchiato"
 
 [editor]
+end-of-line-diagnostics = "hint"
 
 [editor.file-picker]
 hidden = false
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
 
 [keys.insert]
 C-g = "normal_mode"
