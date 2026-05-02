@@ -38,6 +38,7 @@
       "Bash(mysql *)",
       "Read(**/.env)",
       "Read(**/.env.*)",
+      "Read(~/.ssh/**)",
       "Read(~/.config/zsh/.zshenv)",
       "Read(~/.config/zsh/.zshenv.local)"
     ],
