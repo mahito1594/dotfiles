@@ -45,6 +45,7 @@
     "ask": [
       "Bash(brew *)",
       "Bash(mise *)",
+      "Bash(git add *)",
       "Bash(git commit *)",
       "Bash(git push *)",
       "Bash(gh issue create *)",
@@ -99,5 +100,6 @@
     ]
   },
   "advisorModel": "opus",
-  "plansDirectory": "./.claude/plans"
+  "plansDirectory": "./.claude/plans",
+  "verbose": true
 }

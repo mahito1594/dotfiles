@@ -8,7 +8,7 @@ Prioritize information sources in this order:
 2. Retrieved documentation — context7 for library/framework/CLI docs, web fetch otherwise
 3. Model training knowledge — always treat as hypothesis. Confidence does not substitute for verification. Verify third-party library APIs against the version pinned in the project's dependency file before use.
 
-For library, framework, or CLI specifics, use context7 to obtain the answer, not to confirm what you already believe.
+Before proposing any solution involving library, framework, or CLI configuration, consult context7 first.
 
 If verification is impossible, explicitly state "I could not verify this" rather than guessing.
 Never use hedged speculation ("probably", "likely") as a substitute for verification.
