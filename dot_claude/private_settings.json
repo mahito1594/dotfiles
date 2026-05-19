@@ -25,6 +25,15 @@
       "Bash(gh pr diff *)",
       "Bash(gh run list *)",
       "Bash(gh run view *)",
+      "Bash(rtk gh issue list *)",
+      "Bash(rtk gh issue view *)",
+      "Bash(rtk gh pr list *)",
+      "Bash(rtk gh pr checkout *)",
+      "Bash(rtk gh pr checks *)",
+      "Bash(rtk gh pr view *)",
+      "Bash(rtk gh pr diff *)",
+      "Bash(rtk gh run list *)",
+      "Bash(rtk gh run view *)",
       "mcp__plugin_context7_context7__resolve-library-id",
       "mcp__plugin_context7_context7__query-docs"
     ],
@@ -52,6 +61,19 @@
       "Bash(gh pr create *)"
     ],
     "defaultMode": "plan"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "rtk hook claude"
+          }
+        ]
+      }
+    ]
   },
   "statusLine": {
     "type": "command",

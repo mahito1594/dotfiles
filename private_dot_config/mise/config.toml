@@ -23,6 +23,7 @@ yazi = "latest"
 bun = "latest"
 cocogitto = "latest"
 dotnet = "10"
+rtk = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = []
