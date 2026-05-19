@@ -17,6 +17,8 @@ Never use hedged speculation ("probably", "likely") as a substitute for verifica
 
 If a command fails, consider sandbox restrictions before attributing it to environment or version issues.
 Disable sandbox only to confirm the cause.
+TLS errors from trusted public APIs (GitHub, npm, etc.) are sandbox-caused, not genuine
+certificate failures — immediately retry with `dangerouslyDisableSandbox: true`.
 
 ## Response Default
 
