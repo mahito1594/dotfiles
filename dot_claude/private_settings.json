@@ -123,5 +123,6 @@
   },
   "advisorModel": "opus",
   "plansDirectory": "./.claude/plans",
-  "verbose": true
+  "verbose": true,
+  "skipAutoPermissionPrompt": true
 }
