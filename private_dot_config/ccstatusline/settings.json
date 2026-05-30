@@ -99,7 +99,7 @@
       },
       {
         "id": "60d0e100-89ab-4751-99ec-dfe6a0ed3d9b",
-        "type": "tokens-total",
+        "type": "session-cost",
         "color": "yellow"
       }
     ],
@@ -107,8 +107,8 @@
       {
         "id": "2723cb15-cf89-44d4-aeab-75902a99be41",
         "type": "claude-session-id",
-        "rawValue": true,
-        "color": "green"
+        "color": "green",
+        "rawValue": true
       },
       {
         "id": "54c62fe2-ad14-4a45-b427-e2c5bb9e3150",
@@ -130,6 +130,8 @@
   "colorLevel": 2,
   "inheritSeparatorColors": false,
   "globalBold": false,
+  "gitCacheTtlSeconds": 5,
+  "minimalistMode": false,
   "powerline": {
     "enabled": false,
     "separators": [
@@ -140,6 +142,7 @@
     ],
     "startCaps": [],
     "endCaps": [],
-    "autoAlign": false
+    "autoAlign": false,
+    "continueThemeAcrossLines": false
   }
 }

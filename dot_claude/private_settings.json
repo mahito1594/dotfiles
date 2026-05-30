@@ -125,5 +125,6 @@
   "advisorModel": "opus",
   "plansDirectory": "./.claude/plans",
   "verbose": true,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "showClearContextOnPlanAccept": true
 }
