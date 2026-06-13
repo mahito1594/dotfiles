@@ -24,6 +24,7 @@ bun = "latest"
 cocogitto = "latest"
 dotnet = "10"
 rtk = "latest"
+"pipx:semble" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = []
