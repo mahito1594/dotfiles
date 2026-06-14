@@ -26,6 +26,7 @@
       "Bash(gh pr diff *)",
       "Bash(gh run list *)",
       "Bash(gh run view *)",
+      "Bash(rtk read *)",
       "Bash(rtk gh issue list *)",
       "Bash(rtk gh issue view *)",
       "Bash(rtk gh pr list *)",
@@ -36,7 +37,9 @@
       "Bash(rtk gh run list *)",
       "Bash(rtk gh run view *)",
       "mcp__plugin_context7_context7__resolve-library-id",
-      "mcp__plugin_context7_context7__query-docs"
+      "mcp__plugin_context7_context7__query-docs",
+      "mcp__semble__search",
+      "mcp__semble__find-related"
     ],
     "deny": [
       "Bash(sudo *)",
@@ -63,6 +66,7 @@
     ],
     "defaultMode": "plan"
   },
+  "model": "sonnet",
   "hooks": {
     "PreToolUse": [
       {
@@ -117,14 +121,18 @@
       ]
     },
     "excludedCommands": [
-      "codex *",
       "git *",
-      "gh *"
+      "gh *",
+      "aws *",
+      "fly *",
+      "heroku *",
+      "terraform *",
+      "codex *"
     ]
   },
   "advisorModel": "opus",
-  "plansDirectory": "./.claude/plans",
   "verbose": true,
+  "plansDirectory": "./.claude/plans",
   "skipAutoPermissionPrompt": true,
   "showClearContextOnPlanAccept": true
 }
