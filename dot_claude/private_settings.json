@@ -36,6 +36,8 @@
       "Bash(rtk gh pr diff *)",
       "Bash(rtk gh run list *)",
       "Bash(rtk gh run view *)",
+      "Bash(fly checks *)",
+      "Bash(fly logs *)",
       "mcp__plugin_context7_context7__resolve-library-id",
       "mcp__plugin_context7_context7__query-docs",
       "mcp__semble__search",
@@ -58,15 +60,22 @@
     "ask": [
       "Bash(brew *)",
       "Bash(mise *)",
+      "Bash(fly apps*)",
+      "Bash(fly deploy*)",
+      "Bash(fly launch*)",
+      "Bash(fly machine*)",
+      "Bash(fly console*)",
+      "Bash(fly sftp*)",
+      "Bash(fly ssh*)",
       "Bash(git add *)",
       "Bash(git commit *)",
       "Bash(git push *)",
       "Bash(gh issue create *)",
       "Bash(gh pr create *)"
     ],
-    "defaultMode": "plan"
+    "defaultMode": "default"
   },
-  "model": "sonnet",
+  "model": "opusplan",
   "hooks": {
     "PreToolUse": [
       {
@@ -121,6 +130,7 @@
       ]
     },
     "excludedCommands": [
+      "docker *",
       "git *",
       "gh *",
       "aws *",
@@ -131,8 +141,8 @@
     ]
   },
   "advisorModel": "opus",
-  "verbose": true,
+  "showClearContextOnPlanAccept": true,
   "plansDirectory": "./.claude/plans",
-  "skipAutoPermissionPrompt": true,
-  "showClearContextOnPlanAccept": true
+  "verbose": true,
+  "skipAutoPermissionPrompt": true
 }
