@@ -16,7 +16,12 @@
 	last = log -1 HEAD
 	amend = commit --amend
 	discard = checkout --
+	dlog = -c diff.external=difft log --ext-diff
+	dshow = -c diff.external=difft show --ext-diff
+	dft = -c diff.external=difft diff
 [fetch]
 	prune = true
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+[credential "https://git.heroku.com"]
+	helper = !heroku git:credentials
