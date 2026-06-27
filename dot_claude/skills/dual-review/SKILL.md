@@ -1,18 +1,26 @@
 ---
 name: dual-review
-description: "Dual-AI pull request review that runs both Claude and OpenAI Codex as independent reviewers, merges their findings into a unified report, and can apply fixes with Codex re-review. Use this skill when the user wants multiple AI perspectives on a PR: mentions reviewing with Codex, asks for dual/combined review, wants both Claude and Codex opinions, or says things like 'codex にもレビューさせて', 'codex と一緒にレビュー', 'review PR with codex', 'dual review PR 123'. Do NOT trigger for simple PR reviews that don't mention Codex or dual/combined review — those belong to the code-review command."
+description: "Dual-AI pull request review that runs both Claude and OpenAI Codex as independent reviewers, merges their findings into a unified report, and can apply fixes with Codex re-review. Use this skill when the user wants multiple AI perspectives on changes: mentions reviewing with Codex, asks for dual/combined review, wants both Claude and Codex opinions, or says things like 'codex にもレビューさせて', 'codex と一緒にレビュー', 'review PR with codex', 'dual review PR 123', 'codex とローカルの変更をレビュー', 'dual review my branch'. Works with both GitHub PRs and local uncommitted/branch changes. Do NOT trigger for simple PR reviews that don't mention Codex or dual/combined review — those belong to the code-review command."
 ---
 
-# Dual-AI Pull Request Review
+# Dual-AI Review
 
-Two independent AI reviewers (Claude + Codex) examine the same PR, then their findings are merged into one unified report. Each reviewer has different strengths — Claude excels at framework-specific patterns and runtime lifecycle issues, while Codex tends to focus on accessibility and interaction models. Running both gives broader coverage than either alone.
+Two independent AI reviewers (Claude + Codex) examine the same changes, then their findings are merged into one unified report. Each reviewer has different strengths — Claude excels at framework-specific patterns and runtime lifecycle issues, while Codex tends to focus on accessibility and interaction models. Running both gives broader coverage than either alone.
 
 ## Arguments
 
-The user provides a PR number: `/dual-review 240` or "dual review PR 240".
-If no number is given, ask for one via `AskUserQuestion`.
+Two modes are supported:
 
-## Phase 1: Gather PR Information
+**PR mode**: `/dual-review 240` or "dual review PR 240"
+**Local mode**: `/dual-review` or `/dual-review --base main`
+
+- If a PR number is given, fetch from GitHub.
+- If no number is given, review local changes. Default base is `main`; override with `--base <ref>`.
+  - If `--base` is not specified and HEAD has no commits ahead of main, fall back to staged+unstaged changes (`git diff HEAD`).
+
+## Phase 1: Gather Review Targets
+
+**PR mode:**
 
 Fetch PR metadata and diff in parallel:
 
@@ -21,14 +29,34 @@ gh pr view <number> --json title,body,headRefName,baseRefName,additions,deletion
 gh pr diff <number>
 ```
 
+**Local mode:**
+
+Determine changed files and the diff:
+
+```bash
+# Count commits ahead of base
+git rev-list --count <base>...HEAD
+
+# List changed files
+git diff --name-only <base>...HEAD   # branch comparison
+# or
+git diff --name-only HEAD            # uncommitted changes fallback
+```
+
 Then read the full contents of each changed file (not just the diff) for context.
 
 ## Phase 2: Ask Codex Configuration
 
 Use `AskUserQuestion` to ask the user **two questions in a single prompt**:
 
-1. Which Codex model: `gpt-5.4` (recommended), `gpt-5.3-codex` (complex software engineering), or `gpt-5.4-mini` (fast/lightweight)
-2. Which reasoning effort: `xhigh`, `high`, `medium`, or `low`
+1. Which Codex model:
+   - **Default** (recommended) — inherits the user's `~/.codex/config.toml` model (currently `gpt-5.5`)
+   - `gpt-5.5` — latest, explicit
+   - `gpt-5.4` — previous generation
+   - `gpt-5.4-mini` — fast and lightweight
+2. Which reasoning effort: `xhigh`, `high`, `medium` (default per config), or `low`
+
+When Default is chosen, omit the `-m` flag so the Codex CLI applies the user's own config.
 
 ## Phase 3: Run Both Reviews in Parallel
 
@@ -39,7 +67,7 @@ Launch Claude and Codex reviews at the same time — don't wait for one before s
 Use the `feature-dev:code-reviewer` agent with these inputs:
 
 - Full contents of all changed files (not just diffs)
-- PR description and commit messages for context
+- PR description / branch name and base ref for context
 - Focus areas: bugs, logic errors, security (XSS/injection), accessibility, code quality, project convention adherence
 - Confidence-based filtering: only report high-priority issues
 
@@ -48,8 +76,10 @@ Use the `feature-dev:code-reviewer` agent with these inputs:
 Run Codex in read-only sandbox:
 
 ```bash
-echo '<review prompt>' | codex exec --skip-git-repo-check -m <model> --config model_reasoning_effort="<effort>" --sandbox read-only -C <repo-root> 2>/dev/null
+echo '<review prompt>' | codex exec --skip-git-repo-check [-m <model>] --config model_reasoning_effort="<effort>" --sandbox read-only -C <repo-root> 2>/dev/null
 ```
+
+Omit `-m <model>` when the user chose "Default".
 
 The review prompt should include:
 
@@ -64,7 +94,7 @@ Always append `2>/dev/null` to suppress Codex thinking tokens.
 
 Combine both reviews into a unified report. Deduplicate findings that overlap (even if worded differently) and note which reviewer(s) detected each one.
 
-### Output Format
+### Output Format (PR mode)
 
 ```markdown
 ## PR #<number> Unified Review: Claude + Codex
@@ -98,6 +128,34 @@ Explanation and suggested fix.
 - (other areas checked)
 ```
 
+### Output Format (Local mode)
+
+```markdown
+## Local Review: <branch> vs <base> — Claude + Codex
+
+**Branch**: <branch-name>
+**Base**: <base-ref>
+**Changes**: <file count> files
+
+---
+
+### Findings
+
+(same table as PR mode)
+
+---
+
+### Detail per Finding
+
+(same structure as PR mode)
+
+---
+
+### Checked and Clean
+
+(same structure as PR mode)
+```
+
 Sorting: Critical > Important > Medium > Low.
 
 ## Phase 5: Fix Issues (when instructed)
@@ -127,3 +185,4 @@ If the re-review finds new issues, present them and fix if needed (repeat Phase 
 - **Do not post to GitHub** unless the user explicitly asks. Default is local-only output.
 - **Parallel execution matters.** Both reviews should run simultaneously to minimize wall-clock time. Use the Agent tool for the Claude review and Bash for the Codex review in the same message.
 - **Explain disagreements.** When Claude and Codex disagree, present both viewpoints and your assessment of which is correct.
+- **Mode is transparent.** Always state at the top whether reviewing a PR or local changes, and which base ref is being used.
