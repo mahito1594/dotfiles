@@ -24,6 +24,10 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-**/.claude/settings.local.json
 
+# Claude Code
+**/.claude/settings.local.json
 **/CLAUDE.local.md
+
+# mise-en-place
+**/mise.local.toml
