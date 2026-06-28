@@ -86,6 +86,15 @@
             "command": "rtk hook claude"
           }
         ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "test ! -f \"$CLAUDE_TMPDIR/discuss-$CLAUDE_CODE_SESSION_ID.lock\" || { echo 'Discussion mode is active — run /discuss end to switch to plan mode.'; exit 2; }"
+          }
+        ]
       }
     ]
   },
