@@ -132,7 +132,9 @@
     "excludedCommands": [
       "docker *",
       "git *",
+      "rtk git *",
       "gh *",
+      "rtk gh *",
       "aws *",
       "fly *",
       "heroku *",
@@ -140,7 +142,6 @@
       "codex *"
     ]
   },
-  "advisorModel": "opus",
   "showClearContextOnPlanAccept": true,
   "plansDirectory": "./.claude/plans",
   "verbose": true,
