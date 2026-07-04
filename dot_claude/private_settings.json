@@ -3,9 +3,10 @@
   "env": {
     "DISABLE_AUTOUPDATER": "1",
     "CLAUDE_CODE_NO_FLICKER": "1",
-    "CLAUDE_CODE_AUTO_COMPACT_WINDOW": "2000000",
-    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "90",
-    "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet"
+    "CLAUDE_CODE_AUTO_COMPACT_WINDOW": "500000",
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "80",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet",
+    "CLAUDE_AFK_TIMEOUT_MS": "600000"
   },
   "permissions": {
     "allow": [
@@ -72,6 +73,7 @@
     ],
     "defaultMode": "default"
   },
+  "model": "sonnet",
   "hooks": {
     "PreToolUse": [
       {
@@ -119,17 +121,16 @@
       }
     }
   },
-  "autoMemoryEnabled": false,
   "language": "Japanese",
   "sandbox": {
     "enabled": true,
     "autoAllowBashIfSandboxed": true,
     "network": {
-      "allowLocalBinding": true,
       "allowedDomains": [
         "localhost",
         "127.0.0.1"
-      ]
+      ],
+      "allowLocalBinding": true
     },
     "filesystem": {
       "allowWrite": [
@@ -166,6 +167,7 @@
   },
   "showClearContextOnPlanAccept": true,
   "plansDirectory": "./.claude/plans",
+  "autoMemoryEnabled": false,
   "verbose": true,
   "skipAutoPermissionPrompt": true
 }

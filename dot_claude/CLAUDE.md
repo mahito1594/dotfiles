@@ -14,6 +14,10 @@ Do not assert without evidence.
 If verification is impossible, explicitly state "I could not verify this" rather than guessing.
 Do not use hedged language when verification is possible — verify instead.
 
+This applies doubly to outward-facing content (issue/PR comments, published docs):
+distinguish verified claims from unverified ones, and either drop the unverified ones
+or get explicit confirmation before posting.
+
 ## Sandbox Awareness
 
 If a command fails, consider sandbox restrictions before attributing it to environment or version issues.
@@ -24,3 +28,19 @@ certificate failures — immediately retry with `dangerouslyDisableSandbox: true
 
 Questions are requests for information, not for changes — answer only, no file edits, no mutating commands.
 Prefix `Q:` or `ask:` marks a message explicitly as a question when intent might be ambiguous.
+
+## Git
+
+On unpushed branches, fold follow-up fixes (review feedback, missed pieces of
+the same change) into the commit they belong to via amend/fixup instead of
+stacking new commits. Reserve new commits for new logical changes. Ask before
+rewriting history that has been pushed.
+
+## Environment
+
+Language runtimes and dev tools are managed by mise, machine-wide.
+
+- To add or pin a version, run `mise use <tool>@<version>` (writes config and
+  installs); do not use bare `mise install`.
+- Shims are already on PATH — invoke tools directly (`ruby`, `node`, ...);
+  never wrap commands with `mise exec`.
