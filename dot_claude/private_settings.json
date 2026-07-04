@@ -1,11 +1,11 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "env": {
     "DISABLE_AUTOUPDATER": "1",
-    "CLAUDE_CODE_DISABLE_AUTO_MEMORY": "1",
-    "CLAUDE_CODE_DISABLE_1M_CONTEXT": "1",
-    "CLAUDE_CODE_AUTO_COMPACT_WINDOW": "200000",
-    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "85",
-    "CLAUDE_CODE_NO_FLICKER": "1"
+    "CLAUDE_CODE_NO_FLICKER": "1",
+    "CLAUDE_CODE_AUTO_COMPACT_WINDOW": "2000000",
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "90",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet"
   },
   "permissions": {
     "allow": [
@@ -39,14 +39,11 @@
       "Bash(fly checks *)",
       "Bash(fly logs *)",
       "mcp__plugin_context7_context7__resolve-library-id",
-      "mcp__plugin_context7_context7__query-docs",
-      "mcp__semble__search",
-      "mcp__semble__find-related"
+      "mcp__plugin_context7_context7__query-docs"
     ],
     "deny": [
       "Bash(sudo *)",
       "Bash(rm -rf *)",
-      "Bash(curl *)",
       "Bash(git reset *)",
       "Bash(git rebase *)",
       "Bash(psql *)",
@@ -75,7 +72,6 @@
     ],
     "defaultMode": "default"
   },
-  "model": "opusplan",
   "hooks": {
     "PreToolUse": [
       {
@@ -92,7 +88,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "test ! -f \"$CLAUDE_TMPDIR/discuss-$CLAUDE_CODE_SESSION_ID.lock\" || { echo 'Discussion mode is active — run /discuss end to switch to plan mode.'; exit 2; }"
+            "command": "test ! -f \"$CLAUDE_TMPDIR/discuss-$CLAUDE_CODE_SESSION_ID.lock\" || { echo 'Discussion mode is active — file edits are blocked. Run /discuss end to exit.'; exit 2; }"
           }
         ]
       }
@@ -123,12 +119,17 @@
       }
     }
   },
+  "autoMemoryEnabled": false,
   "language": "Japanese",
   "sandbox": {
     "enabled": true,
     "autoAllowBashIfSandboxed": true,
     "network": {
-      "allowLocalBinding": true
+      "allowLocalBinding": true,
+      "allowedDomains": [
+        "localhost",
+        "127.0.0.1"
+      ]
     },
     "filesystem": {
       "allowWrite": [
@@ -136,6 +137,18 @@
         "~/.cache/node",
         "~/.local/share/pnpm",
         "~/.cache/pnpm"
+      ]
+    },
+    "credentials": {
+      "envVars": [
+        {
+          "name": "GITHUB_TOKEN",
+          "mode": "deny"
+        },
+        {
+          "name": "GH_TOKEN",
+          "mode": "deny"
+        }
       ]
     },
     "excludedCommands": [

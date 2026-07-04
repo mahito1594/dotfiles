@@ -8,7 +8,8 @@ Prioritize information sources in this order:
 2. Retrieved documentation — context7 for library/framework/CLI docs, web fetch otherwise
 3. Model training knowledge — treat as hypothesis, not ground truth
 
-Before stating any claim — library API, infrastructure behavior, root cause — verify it against source 1 or 2 and cite the evidence. Do not assert without evidence.
+Before stating any claim — library API, infrastructure behavior, root cause — verify it against source 1 or 2 and cite the evidence.
+Do not assert without evidence.
 
 If verification is impossible, explicitly state "I could not verify this" rather than guessing.
 Do not use hedged language when verification is possible — verify instead.
