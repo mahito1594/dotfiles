@@ -28,6 +28,8 @@ Temporary Items
 # Claude Code
 **/.claude/settings.local.json
 **/CLAUDE.local.md
+**/.claude/.cc-writes/
+**/.claude/launch.json
 
 # mise-en-place
 **/mise.local.toml
