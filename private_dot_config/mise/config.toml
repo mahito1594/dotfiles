@@ -27,6 +27,7 @@ rtk = "latest"
 flyctl = "latest"
 difftastic = "latest"
 hunk = "latest"
+"github:tomasz-tomczyk/crit" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = []

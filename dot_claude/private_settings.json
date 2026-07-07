@@ -72,7 +72,6 @@
     ],
     "defaultMode": "default"
   },
-  "model": "sonnet",
   "hooks": {
     "PreToolUse": [
       {
@@ -110,13 +109,20 @@
     "skill-creator@claude-plugins-official": true,
     "frontend-design@claude-plugins-official": true,
     "ruby-lsp@claude-plugins-official": true,
-    "codex@openai-codex": true
+    "codex@openai-codex": true,
+    "crit@crit": true
   },
   "extraKnownMarketplaces": {
     "openai-codex": {
       "source": {
         "source": "github",
         "repo": "openai/codex-plugin-cc"
+      }
+    },
+    "crit": {
+      "source": {
+        "source": "github",
+        "repo": "tomasz-tomczyk/crit"
       }
     }
   },
@@ -136,7 +142,8 @@
         "~/.npm",
         "~/.cache/node",
         "~/.local/share/pnpm",
-        "~/.cache/pnpm"
+        "~/.cache/pnpm",
+        "~/.crit"
       ]
     },
     "credentials": {
