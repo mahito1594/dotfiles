@@ -14,7 +14,6 @@
 "aqua:zellij-org/zellij" = "latest"
 cargo-binstall = "latest"
 deno = "2"
-eza = "latest"
 github-cli = "latest"
 node = "lts"
 pnpm = "latest"
@@ -28,6 +27,7 @@ flyctl = "latest"
 difftastic = "latest"
 hunk = "latest"
 "github:tomasz-tomczyk/crit" = "latest"
+"cargo:eza" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = []
