@@ -36,6 +36,19 @@ the same change) into the commit they belong to via amend/fixup instead of
 stacking new commits. Reserve new commits for new logical changes. Ask before
 rewriting history that has been pushed.
 
+## Subagents
+
+When spawning subagents (Agent tool), set the model explicitly — built-in
+agents (Explore, Plan, general-purpose) otherwise resolve to Fable/Opus,
+which is expensive. Use the alias (`sonnet`/`haiku`), not a pinned version,
+so it tracks the current generation.
+
+- Research, exploration, mechanical extraction: always `model: sonnet`
+  (`haiku` for purely mechanical work). Never let these inherit Fable/Opus.
+- Judgment-heavy tasks (planning, code review): model is case-by-case.
+  Follow my explicit choice; if I gave none, state which model you are
+  about to spawn with before spawning, so the cost is visible.
+
 ## Environment
 
 Language runtimes and dev tools are managed by mise, machine-wide.
