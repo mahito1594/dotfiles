@@ -3,8 +3,12 @@
   "allowBrowserProcess": true,
   "network": {
     "allowLocalBinding": true,
-    "alloAllUnixSockets": true,
+    "allowAllUnixSockets": true,
     "allowedDomains": [
+      "npmjs.org",
+      "*.npmjs.org",
+      "pypi.org",
+      "*.pypi.org",
       "github.com",
       "*.github.com"
     ],
