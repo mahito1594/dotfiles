@@ -13,8 +13,16 @@ Implementation is delegated to the `implementer` subagent (sonnet).
 
 ## Rules
 
-- Work from a written plan. If none exists, write one first — the plan
-  document is what delegation messages and verification point at.
+- Work from an agreed design. Plan mode is the agreement layer: overall
+  design that needs the user's sign-off is planned and approved there.
+  Orchestrate never re-opens or substitutes for that approval. If no
+  agreed source exists (approved plan, accepted review findings, explicit
+  instruction), get agreement before the first delegation — plan mode for
+  nontrivial designs, a unit-breakdown confirmation in chat for small ones.
+- Enter plan mode yourself (EnterPlanMode) when that check fails — at task
+  intake, when a new task arrives mid-session, or when an escalation shows
+  the agreed design must change. The plan approved at ExitPlanMode is the
+  agreement the orchestrate document then curates.
 - Delegate one verifiable deliverable at a time (e.g. a component plus
   its test) to `implementer`. The delegation message is short:
   objective + plan pointer + file boundaries + anything unusual.
@@ -32,14 +40,21 @@ Implementation is delegated to the `implementer` subagent (sonnet).
 
 ## Plan documents
 
-- The plan document lives at `.claude/orchestrate/<task-slug>.md` in the
-  project, untracked. It must exist on disk before the first delegation —
-  subagents cannot see the conversation.
-- Keep it separate from the harness-managed plans directory
-  (`plansDirectory`): those files are auto-named plan-mode artifacts and
-  may be cleaned up. Treat them as raw material; curate the agreed plan
-  into the orchestrate document, including per-deliverable file
-  boundaries.
+- The orchestrate document is the delegation layer, not the agreement
+  layer. Write it at invocation, derived from the agreed source; it needs
+  no separate approval, but record the derivation at the top
+  ("Derived from: <path or agreement>, <date>") and copy what implementers
+  need — plansDirectory files are auto-named plan-mode artifacts and may
+  be cleaned up, so the document stays self-contained.
+- Design decisions that are new at curation time (unit boundaries aside,
+  anything the agreed source doesn't cover) are shown to the user before
+  the first delegation, not silently added.
+- One document per task at `.claude/orchestrate/<task-slug>.md` in the
+  project, untracked, with one section per unit. It must exist on disk
+  before the first delegation — subagents cannot see the conversation.
+  Unit sections may be written just-in-time as earlier units land; the
+  shared header (verification commands, project rules, commit plan) is
+  written first.
 
 ## Calibrate at wrap-up
 
