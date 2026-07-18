@@ -45,7 +45,6 @@
       "Bash(sudo *)",
       "Bash(rm -rf *)",
       "Bash(git reset *)",
-      "Bash(git rebase *)",
       "Bash(psql *)",
       "Bash(mysql *)",
       "Read(**/.env)",
@@ -66,6 +65,7 @@
       "Bash(fly ssh*)",
       "Bash(git add *)",
       "Bash(git commit *)",
+      "Bash(git rebase *)",
       "Bash(git push *)",
       "Bash(gh issue create *)",
       "Bash(gh pr create *)"
@@ -175,5 +175,7 @@
   "plansDirectory": "./.claude/plans",
   "autoMemoryEnabled": false,
   "verbose": true,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "agentPushNotifEnabled": true,
+  "inputNeededNotifEnabled": true
 }

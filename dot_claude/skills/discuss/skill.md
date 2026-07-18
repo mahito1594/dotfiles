@@ -1,6 +1,6 @@
 ---
 name: discuss
-description: "Enter or exit design discussion mode. /discuss starts a focused design conversation that blocks file edits via a lock file ($CLAUDE_TMPDIR/discuss-$CLAUDE_CODE_SESSION_ID.lock). /discuss end removes the lock, summarizes the outcomes, and stops at the junction so the user chooses the next step (plan mode, model switch, handoff, record-only, or park). Trigger on: /discuss, 'start discussion', 'design discussion', /discuss end, 'end discussion', 'exit discussion mode'."
+description: "Enter or exit design discussion mode. /discuss starts a focused design conversation that blocks file edits via a lock file ($CLAUDE_TMPDIR/discuss-$CLAUDE_CODE_SESSION_ID.lock). /discuss end removes the lock, summarizes the outcomes, and stops at the junction so the user chooses the next step (plan mode, model switch, orchestrate, handoff, record-only, or park). Trigger on: /discuss, 'start discussion', 'design discussion', /discuss end, 'end discussion', 'exit discussion mode'."
 ---
 
 # Discussion Mode
@@ -45,6 +45,7 @@ rm -f "$CLAUDE_TMPDIR/discuss-$CLAUDE_CODE_SESSION_ID.lock"
    - **Plan with the current model** — the user asks for plan mode.
    - **Plan with a different model** — the user runs `/model` first; the conversation context survives the switch, so no handoff file is needed.
    - **Handoff** — on request, write the summary (same structure as step 1) plus pointers to relevant files to `.claude/discuss-handoff.md` in the project, for continuing the discussion in a fresh session. Record judgments only; facts stay as pointers.
+   - **Orchestrate** — the design is settled and implementation will be delegated: the user invokes `/orchestrate`; the summary seeds the plan document (`.claude/orchestrate/<slug>.md`) and implementation goes to the implementer subagent.
    - **Record-only outcome** — on request, write the decision where it belongs (ADR draft, stories, config).
    - **Parked** — the summary's open questions are the record; stop there.
 
