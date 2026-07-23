@@ -15,8 +15,6 @@ LICENSE
 !.claude/settings.json
 !.claude/skills/
 !.claude/skills/dual-review/**
-!.claude/skills/discuss/**
-!.claude/skills/orchestrate/**
 !.claude/agents/**
 
 # Opencode settings

@@ -82,15 +82,6 @@
             "command": "rtk hook claude"
           }
         ]
-      },
-      {
-        "matcher": "Edit|Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "test ! -f \"$CLAUDE_TMPDIR/discuss-$CLAUDE_CODE_SESSION_ID.lock\" || { echo 'Discussion mode is active — file edits are blocked. Run /discuss end to exit.'; exit 2; }"
-          }
-        ]
       }
     ]
   },
@@ -110,7 +101,9 @@
     "frontend-design@claude-plugins-official": true,
     "ruby-lsp@claude-plugins-official": true,
     "codex@openai-codex": true,
-    "crit@crit": true
+    "crit@crit": true,
+    "discuss@pb-cc-plugins": true,
+    "orchestrate@pb-cc-plugins": true
   },
   "extraKnownMarketplaces": {
     "openai-codex": {
@@ -123,6 +116,12 @@
       "source": {
         "source": "github",
         "repo": "tomasz-tomczyk/crit"
+      }
+    },
+    "pb-cc-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "mahito1594/pb-cc-plugins"
       }
     }
   },
