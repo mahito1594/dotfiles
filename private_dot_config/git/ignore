@@ -28,6 +28,7 @@ Temporary Items
 # Claude Code
 **/.claude/settings.local.json
 **/CLAUDE.local.md
+**/.claude/discuss/
 **/.claude/orchestrate/
 **/.claude/.cc-writes/
 **/.claude/launch.json
