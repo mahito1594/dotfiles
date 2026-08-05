@@ -2,65 +2,52 @@
 
 ## Verification First
 
-Prioritize information sources in this order:
+Claims about library APIs, infrastructure behavior, or root causes need
+in-context evidence (code, tool results) or retrieved docs (context7 / web
+fetch); treat training knowledge as hypothesis. If verification is
+impossible, say "I could not verify this" — and never hedge when verifying
+is possible; verify instead.
 
-1. In-context evidence — repository code, file reads, tool results
-2. Retrieved documentation — context7 for library/framework/CLI docs, web fetch otherwise
-3. Model training knowledge — treat as hypothesis, not ground truth
-
-Before stating any claim — library API, infrastructure behavior, root cause — verify it against source 1 or 2 and cite the evidence.
-Do not assert without evidence.
-
-If verification is impossible, explicitly state "I could not verify this" rather than guessing.
-Do not use hedged language when verification is possible — verify instead.
-
-This applies doubly to outward-facing content (issue/PR comments, published docs):
-distinguish verified claims from unverified ones, and either drop the unverified ones
-or get explicit confirmation before posting.
+Outward-facing content (issue/PR comments, published docs): drop unverified
+claims or get explicit confirmation before posting.
 
 ## Sandbox Awareness
 
-If a command fails, consider sandbox restrictions before attributing it to environment or version issues.
-TLS errors from trusted public APIs (GitHub, npm, etc.) are sandbox-caused, not genuine
-certificate failures — immediately retry with `dangerouslyDisableSandbox: true`.
+TLS errors from trusted public APIs (GitHub, npm, ...) are sandbox-caused,
+not genuine certificate failures — retry with sandbox disabled.
 
 ## Response Default
 
-Questions are requests for information, not for changes — answer only, no file edits, no mutating commands.
-Prefix `Q:` or `ask:` marks a message explicitly as a question when intent might be ambiguous.
+Questions are requests for information, not for changes — answer only.
+Prefix `Q:` or `ask:` marks a message explicitly as a question when intent
+might be ambiguous.
 
 ## Git
 
-On unpushed branches, fold follow-up fixes (review feedback, missed pieces of
-the same change) into the commit they belong to via amend/fixup instead of
-stacking new commits. Reserve new commits for new logical changes. Ask before
-rewriting history that has been pushed.
+On unpushed branches, fold follow-up fixes into the commit they belong to
+via amend/fixup instead of stacking new commits; new commits are for new
+logical changes. Ask before rewriting history that has been pushed.
 
 ## Subagents
 
-When spawning subagents (Agent tool), set the model explicitly — built-in
-agents (Explore, Plan, general-purpose) otherwise resolve to Fable/Opus,
-which is expensive. Use the alias (`sonnet`/`haiku`), not a pinned version,
-so it tracks the current generation.
-
-- Research, exploration, mechanical extraction: always `model: sonnet`
-  (`haiku` for purely mechanical work). Never let these inherit Fable/Opus.
-- Judgment-heavy tasks (planning, code review): model is case-by-case.
-  Follow my explicit choice; if I gave none, state which model you are
-  about to spawn with before spawning, so the cost is visible.
+Always set the model explicitly (alias `sonnet`/`haiku`/`opus`, not
+pinned) — built-in agents otherwise resolve to Fable/Opus silently.
+Default to `sonnet` for routine research, exploration, and mechanical
+work (`haiku` if purely mechanical). Escalate to a stronger model when
+the task genuinely needs it (deep root-cause analysis, judgment-heavy
+planning or review) — state which model and why before spawning, so the
+cost is visible.
 
 ## Environment
 
-Language runtimes and dev tools are managed by mise, machine-wide.
-
-- To add or pin a version, run `mise use <tool>@<version>` (writes config and
-  installs); do not use bare `mise install`.
-- Shims are already on PATH — invoke tools directly (`ruby`, `node`, ...);
-  never wrap commands with `mise exec`.
+Language runtimes and dev tools are managed by mise, machine-wide. Pin
+versions with `mise use <tool>@<version>`, not bare `mise install`. Shims
+are on PATH — invoke tools directly; never wrap with `mise exec`.
 
 ## codebase-memory-mcp
 
-Use codebase-memory-mcp when a task depends on relationships or structure that are
-hard to establish from files you can already open (call graphs, cross-component
-impact, blast radius) — not for a known file, an exact string, or a small diff.
-Read `~/.claude/instructions/codebase-memory-mcp.md` before the first such use in a session.
+Use codebase-memory-mcp when a task depends on relationships hard to
+establish from files you can open (call graphs, cross-component impact,
+blast radius) — not for a known file, an exact string, or a small diff.
+Read `~/.claude/instructions/codebase-memory-mcp.md` before the first such
+use in a session.

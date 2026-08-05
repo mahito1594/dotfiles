@@ -26,6 +26,7 @@
       "Bash(gh pr diff *)",
       "Bash(gh run list *)",
       "Bash(gh run view *)",
+      "Bash(rtk ls *)",
       "Bash(rtk read *)",
       "Bash(rtk gh issue list *)",
       "Bash(rtk gh issue view *)",
@@ -38,6 +39,8 @@
       "Bash(rtk gh run view *)",
       "Bash(fly checks *)",
       "Bash(fly logs *)",
+      "Bash(crit comment *)",
+      "Bash(crit plan *)",
       "mcp__plugin_context7_context7__resolve-library-id",
       "mcp__plugin_context7_context7__query-docs"
     ],
@@ -70,7 +73,7 @@
       "Bash(gh issue create *)",
       "Bash(gh pr create *)"
     ],
-    "defaultMode": "default"
+    "defaultMode": "auto"
   },
   "hooks": {
     "PreToolUse": [
@@ -92,8 +95,6 @@
   "enabledPlugins": {
     "context7@claude-plugins-official": true,
     "code-review@claude-plugins-official": true,
-    "code-simplifier@claude-plugins-official": true,
-    "claude-md-management@claude-plugins-official": true,
     "feature-dev@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
@@ -172,9 +173,8 @@
   },
   "showClearContextOnPlanAccept": true,
   "plansDirectory": "./.claude/plans",
-  "autoMemoryEnabled": false,
   "verbose": true,
-  "skipAutoPermissionPrompt": true,
+  "inputNeededNotifEnabled": true,
   "agentPushNotifEnabled": true,
-  "inputNeededNotifEnabled": true
+  "skipAutoPermissionPrompt": true
 }
