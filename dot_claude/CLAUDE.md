@@ -57,3 +57,10 @@ Language runtimes and dev tools are managed by mise, machine-wide.
   installs); do not use bare `mise install`.
 - Shims are already on PATH — invoke tools directly (`ruby`, `node`, ...);
   never wrap commands with `mise exec`.
+
+## codebase-memory-mcp
+
+Use codebase-memory-mcp when a task depends on relationships or structure that are
+hard to establish from files you can already open (call graphs, cross-component
+impact, blast radius) — not for a known file, an exact string, or a small diff.
+Read `~/.claude/instructions/codebase-memory-mcp.md` before the first such use in a session.

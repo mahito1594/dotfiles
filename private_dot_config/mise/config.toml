@@ -28,6 +28,7 @@ difftastic = "latest"
 hunk = "latest"
 "github:tomasz-tomczyk/crit" = "latest"
 "cargo:eza" = "latest"
+"github:DeusData/codebase-memory-mcp" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = []

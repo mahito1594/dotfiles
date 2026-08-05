@@ -11,6 +11,7 @@ LICENSE
 .claude/**
 !.claude/
 !.claude/CLAUDE.md
+!.claude/instructions/**
 !.claude/output-styles/**
 !.claude/settings.json
 !.claude/skills/

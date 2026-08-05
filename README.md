@@ -33,21 +33,11 @@ TBA:
 
 ### Claude Code
 
-#### RTK (Rust Token Killer)
+#### [codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp)
 
-`mise install` で [rtk](https://github.com/rtk-ai/rtk) をインストールした後、hook を設定します。
+mise で `github:DeusData/codebase-memory-mcp` をインストールした後、MCP サーバーを設定します:
 
-```sh
-rtk init -g
-```
 
-CLAUDE.md への instruction は追加しません。
-
-#### semble
-
-`mise install` で [semble](https://github.com/MinishLab/semble) をインストールした後、
-instruction / MCP Server / subagent を設定します。
-
-```sh
-semble install
+```bash
+claude mcp add --scope user --transport stdio codebase-memory-mcp -- codebase-memory-mcp
 ```
