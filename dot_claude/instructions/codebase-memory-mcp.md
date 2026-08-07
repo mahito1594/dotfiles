@@ -6,7 +6,9 @@ are difficult to establish from an isolated file.
 Typical uses include:
 
 * understanding architecture and subsystem boundaries;
-* locating relevant symbols and implementations;
+* locating symbols when the name is unknown and only the concept is known
+  (`search_graph` with `semantic_query`); when a name or exact string is
+  known, grep instead;
 * tracing callers, callees, dependencies, and execution paths;
 * cross-component impact: multi-component bugs, changes reviewed for overlooked
   dependencies, refactoring blast radius (`detect_changes`; `since: "HEAD"` also
@@ -27,6 +29,11 @@ Prefer direct tools when the question is inherently local or textual, such as:
 
 The graph also misses generated, reflective, dynamic, and configuration-driven
 relationships — use source and text search for those regardless of scale.
+
+Out-of-scope tools: do not use `manage_adr` in projects whose ADRs live as
+files in the repository — the repo files are the source of truth. Use
+`ingest_traces` only when the user explicitly provides runtime trace data
+and asks for it.
 
 Before the first graph query in a session (not at session start), run
 `index_repository` once. An already-indexed repo re-indexes incrementally in

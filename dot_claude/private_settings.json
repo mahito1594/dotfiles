@@ -168,7 +168,8 @@
       "fly *",
       "heroku *",
       "terraform *",
-      "codex *"
+      "codex *",
+      "crit *"
     ]
   },
   "showClearContextOnPlanAccept": true,
