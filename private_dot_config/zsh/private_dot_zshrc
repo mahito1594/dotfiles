@@ -150,5 +150,10 @@ if type ghq &>/dev/null && type fzf &>/dev/null; then
     alias repo='cd $(ghq list -p | fzf)'
 fi
 
+if type pi &>/dev/null; then
+    mkdir -p /tmp/pi
+    alias pi='CLAUDE_CODE_TMPDIR=/tmp/pi command pi'
+fi
+
 ## Editor
 export EDITOR=hx

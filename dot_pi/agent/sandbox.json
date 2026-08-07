@@ -29,7 +29,8 @@
     ],
     "allowWrite": [
       ".",
-      "/tmp"
+      "/tmp",
+      "/private/tmp"
     ],
     "denyWrite": [
       ".env",
