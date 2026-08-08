@@ -1,19 +1,25 @@
 # Homebrew
 {{ if eq .chezmoi.os "darwin" -}}
 {{   if eq .chezmoi.arch "arm64" -}}
-eval "$(/opt/homebrew/bin/brew shellenv)"
+_brew_prefix=/opt/homebrew
 {{   else -}}
-eval "$(/usr/local/bin/brew shellenv)"
+_brew_prefix=/usr/local
 {{   end -}}
 {{ else if eq .chezmoi.os "linux" -}}
-# Linuxbrew (if installed)
-[ -d /home/linuxbrew/.linuxbrew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+_brew_prefix=/home/linuxbrew/.linuxbrew
 {{ end -}}
+if [[ -x $_brew_prefix/bin/brew ]]; then
+  _brew_cache=${XDG_CACHE_HOME:-$HOME/.cache}/zsh/brew-shellenv.zsh
+  if [[ ! -e $_brew_cache
+     || $_brew_prefix/bin/brew -nt $_brew_cache
+     || $_brew_prefix/.git/HEAD -nt $_brew_cache ]]; then
+    mkdir -p ${_brew_cache:h}
+    $_brew_prefix/bin/brew shellenv >| $_brew_cache
+  fi
+  source $_brew_cache
+  unset _brew_cache
+fi
+unset _brew_prefix
 
 # mise for shims
 eval "$(mise activate zsh --shims)"
-
-{{ if eq .chezmoi.os "darwin" -}}
-# Added by Toolbox App
-export PATH="$PATH:{{ .chezmoi.homeDir }}/Library/Application Support/JetBrains/Toolbox/scripts"
-{{ end -}}

@@ -1,0 +1,38 @@
+# 記述順がそのまま `sheldon source` の出力順になる。
+# fpath 追加 -> compinit -> プロンプト -> highlighting -> autosuggestions。
+
+shell = "zsh"
+
+[plugins.zsh-completions]
+github = "zsh-users/zsh-completions"
+dir = "src"
+apply = ["fpath"]
+
+# fpath 内のディレクトリの mtime を dump と比べ、新しいものがあれば作り直す。
+[plugins.compinit]
+inline = '''
+autoload -Uz compinit
+() {
+  local zdump=${ZDOTDIR:-$HOME}/.zcompdump-${ZSH_VERSION}
+  local -a stale=(${^fpath}(N/e:'[[ $REPLY -nt $zdump ]]':))
+  if [[ ! -e $zdump ]] || (( $#stale )); then
+    compinit -d $zdump && zcompile -R $zdump
+  else
+    compinit -C -d $zdump
+  fi
+}
+'''
+
+# use の順はリスト順ではなくファイル名のアルファベット順になる。
+[plugins.pure]
+github = "sindresorhus/pure"
+use = ["async.zsh", "pure.zsh"]
+
+[plugins.zsh-syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"
+hooks.pre = "ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)"
+
+# ZSH_AUTOSUGGEST_MANUAL_REBIND=1 は「これが最後のプラグイン」が前提。
+[plugins.zsh-autosuggestions]
+github = "zsh-users/zsh-autosuggestions"
+hooks.pre = "ZSH_AUTOSUGGEST_MANUAL_REBIND=1"

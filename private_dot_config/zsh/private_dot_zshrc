@@ -1,136 +1,236 @@
-# Start configuration added by Zim install {{{
 #
-# User configuration sourced by interactive shells
+# ${ZDOTDIR}/.zshrc
 #
+# 並び順の制約
+#   - 補完 zstyle の list-colors は LS_COLORS の有無を見るので、色の設定より後
+#   - キーバインドは sheldon より前。zsh-autosuggestions が読み込み時に
+#     self-insert 等を rebind するため、url-quote-magic の `zle -N self-insert` と
+#     up/down-line-or-beginning-search の `zle -N` が先に済んでいる必要がある
+#   - fzf は sheldon より後。ZSH_AUTOSUGGEST_MANUAL_REBIND=1 の下で fzf の
+#     ウィジェットを autosuggest にラップさせない
 
-# -----------------
-# Zsh configuration
-# -----------------
+# ---------------------------------------------------------------------------
+# ページャ・色
+# ---------------------------------------------------------------------------
 
-#
-# History
-#
+export PAGER=less
+export LESS='--ignore-case --jump-target=4 --LONG-PROMPT --no-init --quit-if-one-screen --RAW-CONTROL-CHARS'
 
-# Remove older command from the history if a duplicate is to be added.
-setopt HIST_IGNORE_ALL_DUPS
+export LESS_TERMCAP_mb=$'\E[1;31m'  # 点滅開始
+export LESS_TERMCAP_md=$'\E[1;31m'  # 太字開始
+export LESS_TERMCAP_me=$'\E[0m'     # モード終了
+export LESS_TERMCAP_us=$'\E[1;32m'  # 下線開始
+export LESS_TERMCAP_ue=$'\E[0m'     # 下線終了
 
-#
-# Input/output
-#
+export GREP_COLOR='37;45'             # BSD
+export GREP_COLORS="mt=${GREP_COLOR}" # GNU
+alias grep='grep --color=auto'
 
-# Set editor default keymap to emacs (`-e`) or vi (`-v`)
+export CLICOLOR=1
+export LSCOLORS=ExfxcxdxbxGxDxabagacad
+
+
+# ---------------------------------------------------------------------------
+# setopt
+# ---------------------------------------------------------------------------
+
+# ディレクトリ移動
+setopt CD_SILENT             # `cd -` などで移動先パスを表示しない
+
+# 展開とグロブ
+setopt EXTENDED_GLOB         # `#` `~` `^` をグロブのパターンとして扱う
+setopt NO_CASE_GLOB          # グロブを大文字小文字無視で照合
+
+# 履歴。/etc/zshrc の既定は 2000 / 1000 で、消すとファイルが切り詰められる。
+HISTSIZE=20000               # メモリ上の保持数。SAVEHIST より大きくしておく
+SAVEHIST=10000               # ファイルへの保存数
+setopt SHARE_HISTORY         # 全端末で履歴を共有
+setopt HIST_IGNORE_ALL_DUPS  # 重複が入るときは古い方を捨てる
+setopt HIST_IGNORE_SPACE     # 空白で始まるコマンドは残さない
+setopt HIST_FIND_NO_DUPS     # 履歴検索で重複を出さない
+setopt HIST_VERIFY           # 履歴展開は即実行せず一度行に展開する
+
+# 入出力
+setopt INTERACTIVE_COMMENTS  # 対話シェルでも `#` 以降をコメント扱い
+setopt NO_CLOBBER            # `>` で既存ファイルを潰さない。潰すなら `>|`
+setopt ALWAYS_TO_END         # 補完確定時にカーソルを語末へ
+setopt COMPLETE_IN_WORD      # 語の途中からでも補完する
+setopt NO_LIST_BEEP          # 曖昧な補完でビープを鳴らさない
+
+# バックグラウンドジョブの優先度を下げない。macOS では既定の nice +5 が
+# 失敗して `nice(5) failed: operation not permitted` が出ることがある。
+setopt NO_BG_NICE
+
+
+# ---------------------------------------------------------------------------
+# 補完 zstyle
+# ---------------------------------------------------------------------------
+
+# キャッシュを有効化
+zstyle ':completion::complete:*' use-cache on
+
+# グループ化と説明表示
+zstyle ':completion:*' menu select
+zstyle ':completion:*:matches' group yes
+zstyle ':completion:*:options' description yes
+zstyle ':completion:*:options' auto-description '%d'
+zstyle ':completion:*:corrections' format '%F{green}-- %d (errors: %e) --%f'
+zstyle ':completion:*:descriptions' format '%F{yellow}-- %d --%f'
+zstyle ':completion:*:messages' format '%F{purple}-- %d --%f'
+zstyle ':completion:*:warnings' format '%F{red}-- no matches found --%f'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' verbose yes
+
+# 実体は「小文字入力が大文字にもマッチする」スマートケース。完全な
+# case insensitive ('m:{[:lower:][:upper:]}={[:upper:][:lower:]}') は Zsh 5.9 で
+# 壊れている。https://www.zsh.org/mla/workers/2022/msg01229.html
+zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}' '+r:|[._-]=* r:|=*' '+l:|=*'
+
+# 左側が空のときは補完せず TAB 文字を挿入する
+zstyle ':completion:*' insert-tab false
+
+# 補完候補に出しても仕方ないものを除外
+zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec)|prompt_*)'
+# 配列添字の候補の並び順
+zstyle ':completion:*:*:-subscript-:*' tag-order 'indexes' 'parameters'
+
+# ディレクトリ
+if (( ${+LS_COLORS} )); then
+  zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+else
+  zstyle ':completion:*:default' list-colors ${(s.:.):-di=1;34:ln=35:so=32:pi=33:ex=31:bd=1;36:cd=1;33:su=30;41:sg=30;46:tw=30;42:ow=30;43}
+fi
+zstyle ':completion:*' squeeze-slashes true
+
+# 履歴
+zstyle ':completion:*:history-words' stop yes
+zstyle ':completion:*:history-words' remove-all-dups yes
+zstyle ':completion:*:history-words' list false
+zstyle ':completion:*:history-words' menu yes
+
+# ホスト名補完
+zstyle -e ':completion:*:hosts' hosts 'reply=(
+  ${=${=${=${${(f)"$(cat {/etc/ssh/ssh_,~/.ssh/}known_hosts{,2} 2>/dev/null)"}%%[#| ]*}//\]:[0-9]*/ }//,/ }//\[/ }
+  ${=${(f)"$(cat /etc/hosts 2>/dev/null; (( ${+commands[ypcat]} )) && ypcat hosts 2>/dev/null)"}%%(\#)*}
+  ${=${${${${(@M)${(f)"$(cat ~/.ssh/config{,.d/*(N)} 2>/dev/null)"}:#Host *}#Host }:#*\**}:#*\?*}}
+)'
+
+# システムユーザーは補完しない
+zstyle ':completion:*:*:*:users' ignored-patterns \
+  '_*' adm amanda apache avahi beaglidx bin cacti canna clamav daemon dbus \
+  distcache dovecot fax ftp games gdm gkrellmd gopher hacluster haldaemon \
+  halt hsqldb ident junkbust ldap lp mail mailman mailnull mldonkey mysql \
+  nagios named netdump news nfsnobody nobody nscd ntp nut nx openvpn \
+  operator pcap postfix postgres privoxy pulse pvm quagga radvd rpc rpcuser \
+  rpm shutdown squid sshd sync uucp vcsa xfs
+
+# ただし他に候補が無ければ出す
+zstyle ':completion:*' single-ignored show
+
+# 既に行にあるものは候補から外す
+zstyle ':completion:*:(rm|kill|diff):*' ignore-line other
+zstyle ':completion:*:rm:*' file-patterns '*:all-files'
+
+# man
+zstyle ':completion:*:manuals' separate-sections true
+zstyle ':completion:*:manuals.(^1*)' insert-sections true
+
+
+# ---------------------------------------------------------------------------
+# キーバインド
+# ---------------------------------------------------------------------------
+
 bindkey -e
+WORDCHARS=${WORDCHARS//[\/]}  # `/` を単語区切り扱いにして Ctrl-W をパス単位に
 
-# Prompt for spelling correction of commands.
-#setopt CORRECT
+# 上下キーを前方一致の履歴検索にする。既定は前方一致なしの up/down-line-or-history。
+# CSI 形式と SS3 形式の両方を張る (application mode を使っていないため)。
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey '^[[A' up-line-or-beginning-search
+bindkey '^[OA' up-line-or-beginning-search
+bindkey '^P'   up-line-or-beginning-search
+bindkey '^[[B' down-line-or-beginning-search
+bindkey '^[OB' down-line-or-beginning-search
+bindkey '^N'   down-line-or-beginning-search
 
-# Customize spelling correction prompt.
-#SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
+# Ctrl-X Ctrl-E で $EDITOR を開いてコマンドラインを編集
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^X^E' edit-command-line
 
-# Remove path separator from WORDCHARS.
-WORDCHARS=${WORDCHARS//[\/]}
+# URL の貼り付け・入力を自動でクォートする
+autoload -Uz bracketed-paste-url-magic
+zle -N bracketed-paste bracketed-paste-url-magic
+autoload -Uz url-quote-magic
+zle -N self-insert url-quote-magic
 
-# -----------------
-# Zim configuration
-# -----------------
 
-# Use degit instead of git as the default tool to install and update modules.
-#zstyle ':zim:zmodule' use 'degit'
+# ---------------------------------------------------------------------------
+# プラグイン (sheldon)
+# ---------------------------------------------------------------------------
 
-# --------------------
-# Module configuration
-# --------------------
-
-#
-# git
-#
-
-# Set a custom prefix for the generated aliases. The default prefix is 'G'.
-#zstyle ':zim:git' aliases-prefix 'g'
-
-#
-# input
-#
-
-# Append `../` to your input for each `.` you type after an initial `..`
-#zstyle ':zim:input' double-dot-expand yes
-
-#
-# termtitle
-#
-
-# Set a custom terminal title format using prompt expansion escape sequences.
-# See http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Simple-Prompt-Escapes
-# If none is provided, the default '%n@%m: %~' is used.
-#zstyle ':zim:termtitle' format '%1~'
-
-#
-# zsh-autosuggestions
-#
-
-# Disable automatic widget re-binding on each precmd. This can be set when
-# zsh-users/zsh-autosuggestions is the last module in your ~/.zimrc.
-ZSH_AUTOSUGGEST_MANUAL_REBIND=1
-
-# Customize the style that the suggestions are shown with.
-# See https://github.com/zsh-users/zsh-autosuggestions/blob/master/README.md#suggestion-highlight-style
-#ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
-
-#
-# zsh-syntax-highlighting
-#
-
-# Set what highlighters will be used.
-# See https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters.md
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
-
-# Customize the main highlighter styles.
-# See https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters/main.md#how-to-tweak-it
-#typeset -A ZSH_HIGHLIGHT_STYLES
-#ZSH_HIGHLIGHT_STYLES[comment]='fg=242'
-
-# ------------------
-# Initialize modules
-# ------------------
-
-ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
-# Download zimfw plugin manager if missing.
-if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
-  if (( ${+commands[curl]} )); then
-    curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
-        https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
-  else
-    mkdir -p ${ZIM_HOME} && wget -nv -O ${ZIM_HOME}/zimfw.zsh \
-        https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
-  fi
+_sheldon_cache=${XDG_CACHE_HOME:-$HOME/.cache}/zsh/sheldon.zsh
+if [[ ! -e $_sheldon_cache
+   || ${XDG_CONFIG_HOME:-$HOME/.config}/sheldon/plugins.toml -nt $_sheldon_cache
+   || ${XDG_DATA_HOME:-$HOME/.local/share}/sheldon/plugins.lock -nt $_sheldon_cache ]]; then
+  mkdir -p ${_sheldon_cache:h}
+  sheldon source >| $_sheldon_cache && zcompile -R $_sheldon_cache
 fi
-# Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
-if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
-  source ${ZIM_HOME}/zimfw.zsh init -q
-fi
-# Initialize modules.
-source ${ZIM_HOME}/init.zsh
+source $_sheldon_cache
+unset _sheldon_cache
 
-# ------------------------------
-# Post-init module configuration
-# ------------------------------
 
-#
-# zsh-history-substring-search
-#
+# ---------------------------------------------------------------------------
+# 端末タイトル
+# ---------------------------------------------------------------------------
 
-zmodload -F zsh/terminfo +p:terminfo
-# Bind ^[[A/^[[B manually so up/down works both before and after zle-line-init
-for key ('^[[A' '^P' ${terminfo[kcuu1]}) bindkey ${key} history-substring-search-up
-for key ('^[[B' '^N' ${terminfo[kcud1]}) bindkey ${key} history-substring-search-down
-for key ('k') bindkey -M vicmd ${key} history-substring-search-up
-for key ('j') bindkey -M vicmd ${key} history-substring-search-down
-unset key
-# }}} End configuration added by Zim install
+autoload -Uz add-zsh-hook
+_termtitle() { print -Pn '\E]0;%n@%m: %~\a' }
+add-zsh-hook precmd _termtitle
 
-# User configration
-## mise for PATH
+
+# ---------------------------------------------------------------------------
+# fzf
+# ---------------------------------------------------------------------------
+
 eval "$(mise activate zsh)"
+eval "$(fzf --zsh)" # mise activate 後、PATH 解決できるようになってから fzf --zsh を実行する
+
+export FZF_DEFAULT_COMMAND="command fd -H --no-ignore-vcs -E .git -td -tf"
+export FZF_ALT_C_COMMAND="command fd -H --no-ignore-vcs -E .git -td"
+export FZF_CTRL_T_COMMAND=${FZF_DEFAULT_COMMAND}
+_fzf_compgen_path() { command fd -H --no-ignore-vcs -E .git -td -tf . ${1} }
+_fzf_compgen_dir()  { command fd -H --no-ignore-vcs -E .git -td . ${1} }
+
+export FZF_CTRL_T_OPTS="--bind ctrl-/:toggle-preview --preview 'if [[ -d {} ]]; then eza --group-directories-first --color=always --classify=always -1 {}; else bat --color=always --line-range :500 {}; fi'"
+export FZF_ALT_C_OPTS="--bind ctrl-/:toggle-preview --preview 'eza --group-directories-first --color=always --classify=always -1 {}'"
+
+
+# ---------------------------------------------------------------------------
+# エイリアスと関数
+# ---------------------------------------------------------------------------
+
+export EZA_COLORS="${EZA_COLORS:-da=1;34:gm=1;34:Su=1;34}"
+
+alias ls='eza --group-directories-first'
+alias ll='ls -l --git'       # 詳細表示 + git 状態
+alias l='ll -a'              # 詳細表示、隠しファイルも
+alias lm="l | ${PAGER}"      # 詳細表示、ページャ経由
+alias lr='ll -T'             # 詳細表示、ツリー
+alias lx='ll -sextension'    # 詳細表示、拡張子順
+alias lk='ll -ssize'         # 詳細表示、サイズ昇順
+alias lt='ll -smodified'     # 詳細表示、更新時刻昇順
+alias lc='ll -schanged'      # 詳細表示、ctime 昇順
+
+mkcd() { [[ -n ${1} ]] && mkdir -p ${1} && builtin cd ${1} }
+mkpw() { LC_CTYPE=C command tr -dc ${2:-'[:alnum:]'} < /dev/urandom | command head -c ${1:-32} && print }
+
+
+# ---------------------------------------------------------------------------
+# ユーザー設定
+# ---------------------------------------------------------------------------
 
 ## Environment
 export LANG=ja_JP.UTF-8
@@ -143,6 +243,37 @@ function yz() {
 	IFS= read -r -d '' cwd < "$tmp"
 	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
 	rm -f -- "$tmp"
+}
+
+function killport() {
+  local result action selected pid
+  result=$(
+    lsof -nP -iTCP -sTCP:LISTEN -Fpcn |
+      awk '
+        /^p/ { pid = substr($0, 2) }
+        /^c/ { cmd = substr($0, 2) }
+        /^n/ {
+          printf "%s\t%-20s %s\n", pid, cmd, substr($0, 2)
+        }
+      ' |
+      fzf \
+        --delimiter=$'\t' \
+        --with-nth=2 \
+        --header="$(printf '%-20s %s' PROCESS ADDRESS)" \
+        --header-first \
+        --expect=enter,ctrl-k
+  ) || return
+
+  action=${result%%$'\n'*}
+  selected=${result#*$'\n'}
+  [[ -n "$selected" ]] || return
+
+  pid=${selected%%$'\t'*}
+
+  case "$action" in
+    enter)  kill -TERM "$pid" ;;
+    ctrl-k) kill -KILL "$pid" ;;
+  esac
 }
 
 ## alias

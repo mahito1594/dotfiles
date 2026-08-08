@@ -19,24 +19,25 @@ chezmoi init git@github.com:mahito1594/dotfiles.git
 
 ```bash
 brew install mise
-brew install --cask alacritty font-plemol-jp-nf
+brew install --cask alacritty ghostty font-plemol-jp-nf
 ```
 
 ## Configuration
 
 ### Zsh
 
-TBA:
+`$HOME/.zshenv` に以下を記述します:
 
-- XDG Base Directory に従うための手順を書く
-- [zimfw](https://github.com/zimfw/zimfw) のセットアップについて書く
+```sh
+export ZDOTDIR=${ZDOTDIR:-$HOME/.config/zsh}
+[ -f $ZDOTDIR/.zshenv ] && source $ZDOTDIR/.zshenv
+```
 
 ### Claude Code
 
 #### [codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp)
 
 mise で `github:DeusData/codebase-memory-mcp` をインストールした後、MCP サーバーを設定します:
-
 
 ```bash
 claude mcp add --scope user --transport stdio codebase-memory-mcp -- codebase-memory-mcp
