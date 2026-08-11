@@ -17,10 +17,9 @@ Before designing or implementing, inspect the relevant project context.
 Understand the existing architecture, conventions, tests, configuration, documentation,
 package structure, and naming before making detailed changes.
 
-When project-local instructions such as `AGENTS.md`, `CLAUDE.md`, `README.md`, or `CONTRIBUTING.md`
-exist, follow them as the primary source of project-specific guidance.
-
-If global guidance conflicts with project-local guidance, prefer the project-local guidance.
+For project-specific conventions and workflows, follow applicable project-local instructions,
+such as `AGENTS.md`, `CLAUDE.md`, `README.md`, or `CONTRIBUTING.md`.
+When they conflict with this global guidance, prefer the project-local instruction.
 
 ## Implementation preferences
 
