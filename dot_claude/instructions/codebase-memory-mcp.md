@@ -20,6 +20,12 @@ Use the graph to narrow the investigation, not to replace source verification:
 treat empty, ambiguous, stale, or contradictory graph results as a reason to
 inspect the source with file reads, text search, or tests.
 
+Graph silence is not evidence: before a negative or exhaustive claim
+(absence, dead code, a complete caller or impact list), check the relevant
+paths or scopes with `check_index_coverage`. A clean result means no
+recorded gaps, not completeness; partial or skipped coverage means falling
+back to source and text search.
+
 Prefer direct tools when the question is inherently local or textual, such as:
 
 * reading a known file or symbol;
@@ -39,5 +45,5 @@ Before the first graph query in a session (not at session start), run
 `index_repository` once. An already-indexed repo re-indexes incrementally in
 ~0.2s; a never-indexed repo triggers a full build — tell the user before
 starting one. Graph queries take the derived `project` name (`list_projects`
-if a call reports an unknown project). Do not rely on `index_status` or
-auto-watch for freshness.
+if a call reports an unknown project). For freshness, do not rely on
+auto-watch or `index_status` — coverage reporting is their valid use.

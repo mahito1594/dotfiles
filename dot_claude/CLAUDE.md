@@ -5,8 +5,7 @@
 Claims about library APIs, infrastructure behavior, or root causes need
 in-context evidence (code, tool results) or retrieved docs (context7 / web
 fetch); treat training knowledge as hypothesis. If verification is
-impossible, say "I could not verify this" — and never hedge when verifying
-is possible; verify instead.
+impossible, say so; when it is possible, verify — never hedge.
 
 Outward-facing content (issue/PR comments, published docs): drop unverified
 claims or get explicit confirmation before posting.
@@ -14,13 +13,13 @@ claims or get explicit confirmation before posting.
 ## Response Default
 
 Questions are requests for information, not for changes — answer only.
-Prefix `Q:` or `ask:` marks a message explicitly as a question when intent
-might be ambiguous.
+Prefix `Q:` or `ask:` marks a message as a question when intent is
+ambiguous.
 
-## Code Comments
+## Comments
 
 Never reference other code by position ("above", "below", "earlier") in
-code or review comments — positional references rot on reorder. Review/PR
+code or review comments — they rot on reorder. Review/PR
 comments carry judgment calls only; the diff and commit message already
 say what changed.
 
@@ -29,8 +28,7 @@ say what changed.
 ### Git
 
 On unpushed branches, fold follow-up fixes into the commit they belong to
-via amend/fixup instead of stacking new commits; new commits are for new
-logical changes. Ask before rewriting history that has been pushed.
+(amend/fixup); new commits are for new logical changes. Ask before rewriting history that has been pushed.
 
 ### Subagents
 
@@ -48,7 +46,9 @@ a stated reason.
 Use codebase-memory-mcp when direct investigation would require chained
 greps/reads across multiple components (call graphs, blast radius,
 cross-service paths), or when searching for a symbol whose name is unknown
-and only the concept is known. Not for a known file or symbol, an exact
+and only the concept is known. A second consecutive grep/read serving the
+same structural question means the chain has started — switch to the
+graph. Not for locating or reading a known file or symbol, an exact
 string, a small diff, or a repo small enough that a few reads answer it.
 Read `~/.claude/instructions/codebase-memory-mcp.md` before the first such
 use in a session.
