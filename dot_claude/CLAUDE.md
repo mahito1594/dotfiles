@@ -16,12 +16,20 @@ Questions are requests for information, not for changes — answer only.
 Prefix `Q:` or `ask:` marks a message as a question when intent is
 ambiguous.
 
-## Comments
+## Deliverables
 
-Never reference other code by position ("above", "below", "earlier") in
-code or review comments — they rot on reorder. Review/PR
-comments carry judgment calls only; the diff and commit message already
-say what changed.
+Final deliverables — code comments, commit messages, docs (e.g., README,
+ADR, SKILL.md) — must stand for a reader who was not in the session:
+every reference resolves through the repository or a public source
+(e.g., an RFC, upstream docs, an issue tracker), never through the
+conversation. Never reference by position ("above", "below", "earlier";
+rots on reorder) or by session role ("the spec", "the handoff", "the
+previous version", "as requested"). Reasons stay; attribution to the
+conversation goes — state the requirement, not who asked for it.
+Review/PR comments carry judgment calls only; the diff and commit message
+already say what changed. Before finishing a document, or when asked to
+audit a diff for such residue, read
+`~/.claude/instructions/sanitize-artifacts.md`.
 
 ## Tools & Environment
 
