@@ -104,7 +104,8 @@
     "codex@openai-codex": true,
     "crit@crit": true,
     "discuss@pb-cc-plugins": true,
-    "orchestrate@pb-cc-plugins": true
+    "orchestrate@pb-cc-plugins": true,
+    "ponytail@ponytail": true
   },
   "extraKnownMarketplaces": {
     "openai-codex": {
@@ -124,16 +125,27 @@
         "source": "github",
         "repo": "mahito1594/pb-cc-plugins"
       }
+    },
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
+      }
     }
   },
   "language": "Japanese",
   "sandbox": {
     "enabled": true,
     "autoAllowBashIfSandboxed": true,
+    "allowUnsandboxedCommands": false,
     "network": {
       "allowedDomains": [
         "localhost",
-        "127.0.0.1"
+        "127.0.0.1",
+        "mise.jdx.dev",
+        "registry.npmjs.org",
+        "raw.githubusercontent.com",
+        "objects.githubusercontent.com"
       ],
       "allowLocalBinding": true
     },
@@ -177,5 +189,6 @@
   "verbose": true,
   "inputNeededNotifEnabled": true,
   "agentPushNotifEnabled": true,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "outputStyle": "Concise"
 }

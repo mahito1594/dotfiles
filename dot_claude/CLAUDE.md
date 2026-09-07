@@ -55,8 +55,10 @@ use in a session.
 
 ### Sandbox
 
-TLS errors from trusted public APIs (GitHub, npm, ...) are sandbox-caused,
-not genuine certificate failures — retry with sandbox disabled.
+TLS/connection errors from trusted public APIs (GitHub, npm, ...) are
+sandbox-caused, not genuine certificate failures. Use WebFetch for docs and
+API reads; otherwise report the blocked host and ask before it is added to
+`sandbox.network.allowedDomains`.
 
 ### Runtimes
 
