@@ -29,7 +29,7 @@ conversation goes — state the requirement, not who asked for it.
 Review/PR comments carry judgment calls only; the diff and commit message
 already say what changed. Before finishing a document, or when asked to
 audit a diff for such residue, read
-`~/.claude/instructions/sanitize-artifacts.md`.
+`~/.claude/instructions/session-residue.md`.
 
 ## Tools & Environment
 

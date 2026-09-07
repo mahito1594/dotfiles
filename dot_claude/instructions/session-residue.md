@@ -1,4 +1,4 @@
-# Sanitize artifacts
+# Session residue
 
 Test every sentence: can a reader who was not in this session — no
 transcript, no plan file, nothing under `.claude/**` — resolve it through
@@ -25,7 +25,7 @@ Examples given to convey intent do not become content unless the
 artifact needs them. A project-specific case does not belong in a
 general-purpose document unless it is the subject.
 
-## Per artifact
+## Per deliverable
 
 Code comments — cite by repository path or public URL, never by session
 role; if the source is neither in the repository nor public, do not cite
@@ -47,6 +47,6 @@ are options considered, not attempts made in a session.
 
 ## Audit pass
 
-When asked to sanitize a diff or document: apply the test, fix in place,
-report the files touched — not each sentence removed. No preface about
-what was cleaned.
+When asked to remove residue from a diff or document: apply the test, fix
+in place, report the files touched — not each sentence removed. No preface
+about what was cleaned.
