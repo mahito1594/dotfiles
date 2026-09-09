@@ -49,17 +49,14 @@ Purpose-built agents follow their definition's model; if the definition
 pins none, treat them as generic. Override a definition's model only with
 a stated reason.
 
-### Code graph
+### Blast radius
 
-Use codebase-memory-mcp when direct investigation would require chained
-greps/reads across multiple components (call graphs, blast radius,
-cross-service paths), or when searching for a symbol whose name is unknown
-and only the concept is known. A second consecutive grep/read serving the
-same structural question means the chain has started — switch to the
-graph. Not for locating or reading a known file or symbol, an exact
-string, a small diff, or a repo small enough that a few reads answer it.
-Read `~/.claude/instructions/codebase-memory-mcp.md` before the first such
-use in a session.
+For a change to anything the type system sees — a signature, a type or
+enum shape, an export, generated API types — make the edit first and let
+the project's type check, run across all packages and test targets,
+enumerate the call sites; it resolves same-named symbols by type, which
+grep cannot. Grep covers only what the checker never sees: strings,
+comments, config, and untyped code.
 
 ### Sandbox
 
