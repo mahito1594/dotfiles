@@ -27,9 +27,9 @@ rots on reorder) or by session role ("the spec", "the handoff", "the
 previous version", "as requested"). Reasons stay; attribution to the
 conversation goes — state the requirement, not who asked for it.
 Review/PR comments carry judgment calls only; the diff and commit message
-already say what changed. Before finishing a document, or when asked to
-audit a diff for such residue, read
-`~/.claude/instructions/session-residue.md`.
+already say what changed. Before drafting a commit message, a PR
+description, or a doc, and when asked to audit a diff for such residue,
+apply the `session-residue` skill.
 
 ## Tools & Environment
 
