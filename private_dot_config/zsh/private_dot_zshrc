@@ -195,7 +195,7 @@ add-zsh-hook precmd _termtitle
 # fzf
 # ---------------------------------------------------------------------------
 
-eval "$(mise activate zsh)"
+[[ -z $CLAUDECODE ]] && eval "$(mise activate zsh)"
 eval "$(fzf --zsh)" # mise activate 後、PATH 解決できるようになってから fzf --zsh を実行する
 
 export FZF_DEFAULT_COMMAND="command fd -H --no-ignore-vcs -E .git -td -tf"

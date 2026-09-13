@@ -7,6 +7,9 @@
     "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "80",
     "CLAUDE_AFK_TIMEOUT_MS": "600000"
   },
+  "attribution": {
+    "sessionUrl": false
+  },
   "permissions": {
     "allow": [
       "WebSearch",
@@ -173,6 +176,7 @@
         }
       ]
     },
+    "enableWeakerNetworkIsolation": true,
     "excludedCommands": [
       "docker *",
       "git *",
@@ -184,17 +188,13 @@
       "heroku *",
       "terraform *",
       "codex *",
-      "crit *",
-      "pnpm install",
-      "pnpm install *",
-      "pnpm add *"
+      "crit *"
     ]
   },
   "showClearContextOnPlanAccept": true,
   "plansDirectory": "./.claude/plans",
-  "verbose": true,
+  "timeFormat": "auto",
   "inputNeededNotifEnabled": true,
   "agentPushNotifEnabled": true,
-  "skipAutoPermissionPrompt": true,
-  "timeFormat": "auto"
+  "skipAutoPermissionPrompt": true
 }
