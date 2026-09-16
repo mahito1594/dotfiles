@@ -31,6 +31,13 @@ already say what changed. Before drafting a commit message, a PR
 description, or a doc, and when asked to audit a diff for such residue,
 apply the `session-residue` skill.
 
+## Language by audience
+
+- Written for the user to read, approve, or decide on (plan files, handoff
+  notes, discussion summaries, review findings): Japanese.
+- Shipped with the repository (code, comments, commits, ADRs, docs): the
+  project's convention.
+
 ## Tools & Environment
 
 ### Git
