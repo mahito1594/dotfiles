@@ -18,18 +18,17 @@ ambiguous.
 
 ## Deliverables
 
-Final deliverables — code comments, commit messages, docs (e.g., README,
-ADR, SKILL.md) — must stand for a reader who was not in the session:
-every reference resolves through the repository or a public source
-(e.g., an RFC, upstream docs, an issue tracker), never through the
-conversation. Never reference by position ("above", "below", "earlier";
-rots on reorder) or by session role ("the spec", "the handoff", "the
-previous version", "as requested"). Reasons stay; attribution to the
-conversation goes — state the requirement, not who asked for it.
-Review/PR comments carry judgment calls only; the diff and commit message
-already say what changed. Before drafting a commit message, a PR
-description, or a doc, and when asked to audit a diff for such residue,
-apply the `session-residue` skill.
+Code comments, commit messages, and docs must stand for a reader who was
+not in the session: every reference resolves through the repository or a
+public source. Never reference by position ("above", "earlier") or by
+session role ("the spec", "the handoff", "the previous version", "as
+requested"); state the requirement, not who asked for it. Review/PR
+comments carry judgment calls only; the diff already says what changed.
+
+After creating or substantially editing a file deliverable (doc, handoff,
+ADR, source with new comments), pass its path — nothing else — to the
+`session-residue:residue-check` agent (if unavailable, re-read the file
+as an outside reader), then verify each finding and fix or dismiss it.
 
 ## Language by audience
 

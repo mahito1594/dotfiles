@@ -110,7 +110,8 @@
     "crit@crit": true,
     "discuss@pb-cc-plugins": true,
     "orchestrate@pb-cc-plugins": true,
-    "ponytail@ponytail": true
+    "ponytail@ponytail": true,
+    "session-residue@pb-cc-plugins": true
   },
   "extraKnownMarketplaces": {
     "openai-codex": {
