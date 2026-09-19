@@ -122,17 +122,20 @@ in Phase 2.
 
 ### Codex Review
 
-Run Codex in read-only sandbox. **Write the review prompt to a scratchpad file and
-pipe it in** — `echo '<prompt>'` breaks on long prompts (quotes, backticks,
-newlines), so a file is the reliable path:
+Run Codex in read-only sandbox. **Write the review prompt to a file in the session
+scratchpad directory, then pass Codex a one-line prompt that points at it**, and
+have Codex write its final message to another scratchpad file with `-o`:
 
 ```bash
-# Write the prompt to $CLAUDE_TMPDIR (or the session scratchpad dir) first, then:
-cat <prompt-file> | codex exec --skip-git-repo-check -m <codex-model> \
-  --config model_reasoning_effort="<effort>" --sandbox read-only -C <repo-root> 2>/dev/null
+codex exec --skip-git-repo-check -m <codex-model> --config model_reasoning_effort="<effort>" --sandbox read-only -C <repo-root> -o <output-file> 'Read <prompt-file> and carry out the code review it describes.'
 ```
 
-For a very short prompt, inline `echo '...'` is acceptable, but default to the file.
+Run it with the Bash tool's `run_in_background` (reviews outlast the default
+timeout), then read `<output-file>` once it completes.
+
+**Run `codex` as a bare command** — no pipe, redirect, chaining, or multi-line
+argument. It runs outside the sandbox only via `sandbox.excludedCommands`
+(`codex *`), which exempts nothing else on the line.
 
 The review prompt should include:
 
@@ -141,8 +144,8 @@ The review prompt should include:
 - Focus on high-confidence issues only
 - Same focus areas as the Claude review
 
-`2>/dev/null` suppresses Codex thinking tokens (it also hides stderr errors — if a
-run returns nothing, re-run without it to see the error).
+The final review is in `<output-file>`; the background task's own output holds
+Codex's progress and any errors.
 
 ## Phase 4: Merge and Present Results
 
@@ -257,10 +260,10 @@ session context so Codex can verify its earlier findings are resolved and catch 
 new issues from the fixes.
 
 ```bash
-echo 'I have applied fixes for all issues you identified. Please re-review the changed files to verify the fixes are correct and check for any new issues. The fixes were: <brief summary>' | codex exec --skip-git-repo-check resume --last 2>/dev/null
+codex exec --skip-git-repo-check resume --last -o <output-file> 'I have applied fixes for all issues you identified. Please re-review the changed files to verify the fixes are correct and check for any new issues. The fixes were: <brief one-line summary>'
 ```
 
-The resume command must not include model/effort/sandbox flags — those are inherited from the original session.
+The resume command must not include model/effort/sandbox flags — those are inherited from the original session. The same bare-command rule as Phase 3 applies: keep the summary on one line, or write it to a file and point Codex at it.
 
 If the re-review finds new issues, present them and fix if needed (repeat Phase 5-6).
 
