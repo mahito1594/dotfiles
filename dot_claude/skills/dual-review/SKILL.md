@@ -68,39 +68,41 @@ Ask in a single prompt, putting the recommended option first with a
 
 1. **Claude reviewer model** — `opus` (recommended; large or security-sensitive
    changes) or `sonnet` (small, low-risk changes).
-2. **Codex model** — `gpt-5.6-sol` (recommended; pairs with opus) /
-   `gpt-5.6-terra` (pairs with sonnet) / `gpt-5.6-luna` (fast, cost-sensitive).
-   Older generations or anything else the user names go through the free-text
-   option.
+2. **Codex model** — `gpt-6-sol` (recommended; pairs with opus) /
+   `gpt-5.6-terra` (pairs with sonnet) / `gpt-6-luna` (fast, cost-sensitive).
+   `gpt-6-astra`, older generations, or anything else the user names go through
+   the free-text option.
 3. **Codex reasoning effort** — `high` (recommended) / `medium` / `xhigh`.
-   The full range is `low`–`ultra`: `max` needs a 5.6-generation model, `ultra`
-   needs sol/terra. Reserve `max`/`ultra` for especially critical reviews (pick
-   via the free-text option).
+   The full range is `low`–`ultra`: `ultra` is unavailable on luna models, and
+   `max` on models older than 5.6. Reserve `max`/`ultra` for especially critical
+   reviews (pick via the free-text option).
 
 After the answers come back, **validate the combination before proceeding**:
-`ultra` runs only on sol/terra, and `max` only on a 5.6-generation model. If the
-chosen effort is incompatible with the chosen model, point out the conflict and
-re-ask the conflicting item — do not silently proceed or silently substitute a
-different value.
+`ultra` does not run on luna models, and `max` does not run on models older than
+5.6. If the chosen effort is incompatible with the chosen model, point out the
+conflict and re-ask the conflicting item — do not silently proceed or silently
+substitute a different value.
 
-Coherent pairs, for reference: `opus` × `gpt-5.6-sol` × `high` (flagship tier) and
+Coherent pairs, for reference: `opus` × `gpt-6-sol` × `high` (flagship tier) and
 `sonnet` × `gpt-5.6-terra` × `medium` (balanced tier). Mixed pairs are legitimate
 when the change calls for it — the questions above never force a pairing.
 
 <!--
-  MODEL MAINTENANCE POINT — current-generation options listed as of 2026-07. This
+  MODEL MAINTENANCE POINT — current-generation options listed as of 2026-09. This
   block is the single place model names live in this skill; update it here when a
   generation changes rather than scattering names through the phases. Do NOT inherit
   `~/.codex/config.toml` (it lags) and do NOT parse `models_cache.json` (internal,
   schema-unstable) — list the options here and let the user pick.
-  Codex gpt-5.6: sol=flagship ($5/$30), terra=balanced ($2.5/$15), luna=fast ($1/$6).
-  Claude: opus-4-8 is the code-review flagship; sonnet is the balanced tier; fable is
-  a premium exception (~2x price, always-on thinking, no prefill) — explicit-request
-  only. There is no Codex counterpart to fable in 5.6 (no separate -pro slug).
+  Codex: gpt-6-astra=premium, gpt-6-sol=flagship, gpt-5.6-terra=balanced,
+  gpt-6-luna=fast.
+  Claude: opus (Opus 5.5) is the code-review flagship; sonnet is the balanced tier; fable is
+  a premium exception (always-on thinking, no prefill) — explicit-request only.
+  fable's Codex counterpart is gpt-6-astra, likewise explicit-request only.
 -->
 
-Codex model options: `gpt-5.6-sol` (flagship) · `gpt-5.6-terra` (balanced) ·
-`gpt-5.6-luna` (fast) · or a specific/older model the user names.
+Codex model options: `gpt-6-sol` (flagship) · `gpt-5.6-terra` (balanced) ·
+`gpt-6-luna` (fast) · `gpt-6-astra` (premium, explicit request only) · or a
+specific/older model the user names.
 
 Carry the chosen `<claude-model>`, `<codex-model>`, and `<effort>` into Phase 3.
 
