@@ -110,17 +110,45 @@ Carry the chosen `<claude-model>`, `<codex-model>`, and `<effort>` into Phase 3.
 
 Launch Claude and Codex reviews at the same time — don't wait for one before starting the other.
 
+### Review Criteria
+
+Both reviewers receive this section verbatim, so their findings share one set of
+focus areas and one severity scale for the Phase 4 merge. The Claude reviewer agent
+carries no criteria of its own; change them here only.
+
+```markdown
+## Review criteria
+
+Focus areas:
+
+- Bugs and logic errors: wrong conditions, off-by-one, null/undefined handling, error paths, race conditions, state or reactivity mistakes specific to the framework in use.
+- Security: injection, XSS, unsafe URL handling, secrets, authn/authz gaps, unsafe defaults.
+- Accessibility for UI changes: accessible names, semantics, keyboard reachability, focus.
+- Violations of explicit project rules in CLAUDE.md or equivalent docs; cite the rule.
+- Code quality only when it causes real risk (duplication that will diverge, missing error handling).
+
+Do not report style preferences that no project rule states. Report only issues you have confirmed with a concrete failure path; drop anything speculative.
+
+Severity:
+
+- **Critical**: data loss, security hole, or crash on a common path.
+- **Important**: incorrect behavior users will hit.
+- **Medium**: incorrect behavior on an edge case, or an accessibility gap.
+- **Low**: minor robustness or clarity issue with a real consequence.
+```
+
 ### Claude Review
 
-Use the `feature-dev:code-reviewer` agent with an **explicit model** (never leave it
-unset — it would resolve to an expensive default): pass the `<claude-model>` chosen
-in Phase 2.
+Use the `diff-reviewer` agent with an **explicit model**: pass the `<claude-model>`
+chosen in Phase 2 (the per-call model overrides the agent's `sonnet` default).
 
-- Inputs: full contents of all changed files (not just diffs); PR description /
-  branch name and base ref for context.
-- Focus areas: bugs, logic errors, security (XSS/injection), accessibility, code
-  quality, project convention adherence.
-- Confidence-based filtering: only report high-priority issues.
+Give it:
+
+- the base ref and the list of changed files, with an instruction to read the full
+  contents of each;
+- the full diff text;
+- PR description / branch name for context;
+- the Review Criteria block above, verbatim.
 
 ### Codex Review
 
@@ -142,9 +170,9 @@ argument. It runs outside the sandbox only via `sandbox.excludedCommands`
 The review prompt should include:
 
 - The list of changed files with instructions to read each one
-- Request for structured review with severity levels
-- Focus on high-confidence issues only
-- Same focus areas as the Claude review
+- The Review Criteria block above, verbatim
+- An instruction to report only problems the change introduces, each with severity
+  and `file:line`
 
 The final review is in `<output-file>`; the background task's own output holds
 Codex's progress and any errors.
