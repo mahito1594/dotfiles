@@ -5,7 +5,8 @@
     "CLAUDE_CODE_NO_FLICKER": "1",
     "CLAUDE_CODE_AUTO_COMPACT_WINDOW": "500000",
     "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "80",
-    "CLAUDE_AFK_TIMEOUT_MS": "600000"
+    "CLAUDE_AFK_TIMEOUT_MS": "600000",
+    "CLAUDE_CODE_THRIFTY_SONIC": "0"
   },
   "attribution": {
     "sessionUrl": false
@@ -71,8 +72,6 @@
       "Bash(fly console*)",
       "Bash(fly sftp*)",
       "Bash(fly ssh*)",
-      "Bash(git add *)",
-      "Bash(git commit *)",
       "Bash(git rebase *)",
       "Bash(git push *)",
       "Bash(gh issue create *)",
@@ -109,8 +108,8 @@
     "crit@crit": true,
     "discuss@pb-cc-plugins": true,
     "orchestrate@pb-cc-plugins": true,
-    "ponytail@ponytail": true,
-    "session-residue@pb-cc-plugins": true
+    "session-residue@pb-cc-plugins": true,
+    "ponytail@ponytail": true
   },
   "extraKnownMarketplaces": {
     "openai-codex": {
@@ -161,6 +160,7 @@
         "~/.cache/node",
         "~/.local/share/pnpm",
         "~/.cache/pnpm",
+        "/private/tmp/pnpm-store-operation-locks-501",
         "~/.crit"
       ]
     },
@@ -188,7 +188,8 @@
       "heroku *",
       "terraform *",
       "codex *",
-      "crit *"
+      "crit *",
+      "pnpm dev *"
     ]
   },
   "showClearContextOnPlanAccept": true,
@@ -196,5 +197,6 @@
   "timeFormat": "auto",
   "inputNeededNotifEnabled": true,
   "agentPushNotifEnabled": true,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "model": "opus"
 }
