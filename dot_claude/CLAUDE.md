@@ -44,6 +44,16 @@ as an outside reader), then verify each finding and fix or dismiss it.
 On unpushed branches, fold follow-up fixes into the commit they belong to
 (amend/fixup); new commits are for new logical changes. Ask before rewriting history that has been pushed.
 
+### Sandbox
+
+Run anything that needs the network or credentials as a call of its own:
+the command alone, with no other shell syntax (not even inside quotes) and
+no options before the subcommand (`git -C`). Anything more runs sandboxed.
+
+- To change directory, `cd` in a separate call first.
+- Sandboxed failures look like credential, host-key, TLS, or DNS errors;
+  retry once bare before concluding anything.
+
 ### Subagents
 
 Generic agents (general-purpose, Explore, Plan, claude) inherit the
@@ -63,13 +73,6 @@ the project's type check, run across all packages and test targets,
 enumerate the call sites; it resolves same-named symbols by type, which
 grep cannot. Grep covers only what the checker never sees: strings,
 comments, config, and untyped code.
-
-### Sandbox
-
-TLS/connection errors from trusted public APIs (GitHub, npm, ...) are
-sandbox-caused, not genuine certificate failures. Use WebFetch for docs and
-API reads; otherwise report the blocked host and ask before it is added to
-`sandbox.network.allowedDomains`.
 
 ### Runtimes
 

@@ -79,6 +79,7 @@
     ],
     "defaultMode": "auto"
   },
+  "model": "opus",
   "hooks": {
     "PreToolUse": [
       {
@@ -98,12 +99,6 @@
   },
   "enabledPlugins": {
     "context7@claude-plugins-official": true,
-    "code-review@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": true,
-    "rust-analyzer-lsp@claude-plugins-official": true,
-    "skill-creator@claude-plugins-official": true,
-    "frontend-design@claude-plugins-official": true,
-    "ruby-lsp@claude-plugins-official": true,
     "codex@openai-codex": true,
     "crit@crit": true,
     "discuss@pb-cc-plugins": true,
@@ -161,7 +156,8 @@
         "~/.local/share/pnpm",
         "~/.cache/pnpm",
         "/private/tmp/pnpm-store-operation-locks-501",
-        "~/.crit"
+        "~/.crit",
+        "~/notes"
       ]
     },
     "credentials": {
@@ -197,6 +193,5 @@
   "timeFormat": "auto",
   "inputNeededNotifEnabled": true,
   "agentPushNotifEnabled": true,
-  "skipAutoPermissionPrompt": true,
-  "model": "opus"
+  "skipAutoPermissionPrompt": true
 }

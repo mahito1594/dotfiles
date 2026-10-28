@@ -3,6 +3,9 @@
 .AppleDouble
 .LSOverride
 
+# Git worktree
+.claude/worktrees/
+
 # Icon must end with two \r
 Icon
 
