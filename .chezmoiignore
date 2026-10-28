@@ -30,4 +30,5 @@ LICENSE
 !.pi/agent/
 !.pi/agent/AGENTS.md
 !.pi/agent/settings.json
+!.pi/agent/mcp.json
 !.pi/agent/sandbox.json
