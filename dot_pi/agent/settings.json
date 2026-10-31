@@ -5,7 +5,8 @@
   "defaultModel": "gpt-5.6-terra",
   "defaultThinkingLevel": "medium",
   "packages": [
-    "npm:pi-sandbox"
+    "npm:pi-sandbox",
+    "git:github.com/DietrichGebert/ponytail"
   ],
   "tuiMode": "fullscreen"
 }
