@@ -4,7 +4,7 @@ import = [
 ]
 
 [window]
-dimensions = { columns = 132, lines = 43 }
+dimensions = { columns = 180, lines = 50 }
 padding = { x = 2, y = 2 }
 option_as_alt = "Both"
 
