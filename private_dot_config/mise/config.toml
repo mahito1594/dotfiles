@@ -1,6 +1,5 @@
 [tools]
 bun = "latest"
-deno = "2"
 dotnet = "10"
 node = "lts"
 pnpm = "latest"
