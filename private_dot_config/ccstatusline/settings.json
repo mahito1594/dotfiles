@@ -89,8 +89,21 @@
       },
       {
         "id": "bba786f9-d4aa-4e88-9bfb-e183a7defbab",
-        "type": "tokens-cached",
-        "color": "brightBlack"
+        "type": "cache-hit-rate",
+        "color": "brightBlack",
+        "metadata": {
+          "cacheScopeSession": "false"
+        }
+      },
+      {
+        "id": "c2896151-849d-4144-929f-d1f627061ccd",
+        "type": "separator",
+        "character": "|"
+      },
+      {
+        "id": "e661b89d-e4f5-4f0c-ba39-f56a56b345a4",
+        "type": "cache-timer",
+        "color": "green"
       },
       {
         "id": "d2144d4e-f740-4b29-ba6e-c3c8032f23e9",
@@ -128,9 +141,12 @@
   "flexMode": "full-minus-40",
   "compactThreshold": 60,
   "colorLevel": 2,
+  "defaultPaddingSide": "both",
   "inheritSeparatorColors": false,
   "globalBold": false,
   "gitCacheTtlSeconds": 5,
+  "terminalWidthCacheTtlSeconds": 5,
+  "customCommandCacheTtlSeconds": 0,
   "minimalistMode": false,
   "powerline": {
     "enabled": false,
