@@ -192,10 +192,17 @@ add-zsh-hook precmd _termtitle
 
 
 # ---------------------------------------------------------------------------
+# mise en place
+# ---------------------------------------------------------------------------
+if [[ -z $CLAUDECODE ]]; then
+  eval "$(mise activate zsh)"
+else
+  path=(${path:#${MISE_DATA_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/mise}/installs/*})
+fi
+
+# ---------------------------------------------------------------------------
 # fzf
 # ---------------------------------------------------------------------------
-
-[[ -z $CLAUDECODE ]] && eval "$(mise activate zsh)"
 eval "$(fzf --zsh)" # mise activate 後、PATH 解決できるようになってから fzf --zsh を実行する
 
 export FZF_DEFAULT_COMMAND="command fd -H --no-ignore-vcs -E .git -td -tf"
