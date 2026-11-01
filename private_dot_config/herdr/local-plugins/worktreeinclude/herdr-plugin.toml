@@ -1,0 +1,10 @@
+id = "local.worktreeinclude"
+name = "Worktree Include"
+version = "0.1.0"
+min_herdr_version = "0.9.5"
+description = "Copy gitignored files listed in .worktreeinclude into new worktrees"
+platforms = ["linux", "macos"]
+
+[[events]]
+on = "worktree.created"
+command = ["bash", "copy.sh"]
