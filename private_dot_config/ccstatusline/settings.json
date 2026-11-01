@@ -103,16 +103,6 @@
       {
         "id": "e661b89d-e4f5-4f0c-ba39-f56a56b345a4",
         "type": "cache-timer",
-        "color": "green"
-      },
-      {
-        "id": "d2144d4e-f740-4b29-ba6e-c3c8032f23e9",
-        "type": "separator",
-        "character": "|"
-      },
-      {
-        "id": "60d0e100-89ab-4751-99ec-dfe6a0ed3d9b",
-        "type": "session-cost",
         "color": "yellow"
       }
     ],
