@@ -1,12 +1,24 @@
 {
+  "$schema": "https://pi.dev/schemas/settings.schema.json",
   "lastChangelogVersion": "1.4.0",
   "theme": "dark",
-  "defaultProvider": "openai",
-  "defaultModel": "gpt-6.1-terra",
+  "defaultProvider": "synthetic",
+  "defaultModel": "hf:deepseek-ai/DeepSeek-V4.1-Flash-1017",
   "defaultThinkingLevel": "medium",
   "packages": [
     "npm:pi-sandbox",
-    "git:github.com/DietrichGebert/ponytail"
+    "git:github.com/DietrichGebert/ponytail",
+    {
+      "source": "npm:@aliou/pi-synthetic",
+      "extensions": [
+        "+extensions/provider/index.ts",
+        "+extensions/web-search/index.ts",
+        "+extensions/command-quotas/index.ts",
+        "-extensions/usage-status/index.ts",
+        "-extensions/quota-warnings/index.ts"
+      ]
+    }
   ],
-  "tuiMode": "fullscreen"
+  "tuiMode": "fullscreen",
+  "hideThinkingBlock": true
 }
