@@ -34,6 +34,7 @@ shellcheck = "latest"
 terraform = "latest"
 yazi = "latest"
 zizmor = "latest"
+"packslip:github.com/max-sixty/worktrunk" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = []

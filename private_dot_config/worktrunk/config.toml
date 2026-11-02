@@ -1,0 +1,4 @@
+worktree-path = "~/worktrunk/{{ owner }}/{{ repo }}/{{ branch | sanitize }}"
+
+[pre-start]
+copy = "wt step copy-ignored --require-include"
