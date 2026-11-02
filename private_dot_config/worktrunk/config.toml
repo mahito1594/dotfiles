@@ -2,3 +2,41 @@ worktree-path = "~/worktrunk/{{ owner }}/{{ repo }}/{{ branch | sanitize }}"
 
 [pre-start]
 copy = "wt step copy-ignored --require-include"
+
+[aliases]
+# Pick worktrees/branches with fzf and remove them.
+# Merged ones are removed without a prompt; unmerged ones need confirmation and
+# are removed with -D. Worktrees with uncommitted changes are skipped, because
+# -f would discard files git cannot recover.
+rmi = '''
+set -eu
+export d={{ default_branch }}
+rows=$(wt list --format=json --branches | jq -r --arg d "$d" '
+  .items[]
+  | select(.branch != null and .branch != $d and (.worktree.main | not))
+  | (if (.worktree.changes // {}) | [.staged, .modified, .untracked, .renamed, .deleted, .conflicted] | any then "dirty"
+     elif .display.state == "empty" or .display.state == "integrated" then "merged"
+     else "unmerged" end) as $k
+  | [.branch, $k, .display.symbols] | @tsv')
+[ -n "$rows" ] || { echo "no removable branches"; exit 0; }
+sel=$(printf '%s\n' "$rows" | fzf --multi --delimiter='\t' \
+  --preview 'git diff "$d"...{1} | delta --width="$FZF_PREVIEW_COLUMNS"') || exit 0
+pick() { printf '%s\n' "$sel" | awk -F'\t' -v k="$1" '$2 == k { print $1 }'; }
+merged=$(pick merged); unmerged=$(pick unmerged); dirty=$(pick dirty)
+if [ -n "$dirty" ]; then
+  echo "skipped (uncommitted changes; commit or discard them first):"
+  printf '  %s\n' $dirty
+fi
+if [ -n "$unmerged" ]; then
+  echo "unmerged branches (their commits will be lost):"
+  printf '  %s\n' $unmerged
+  printf 'force-delete with -D? [y/N] '
+  read -r ans </dev/tty
+  case "$ans" in [yY]) ;; *) unmerged= ;; esac
+fi
+# Keep going when the first removal fails, so confirmed -D removals still run.
+rc=0
+[ -z "$merged" ] || wt remove --foreground $merged || rc=1
+[ -z "$unmerged" ] || wt remove --foreground -D $unmerged || rc=1
+exit $rc
+'''
