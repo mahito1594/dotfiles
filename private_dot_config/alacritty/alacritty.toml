@@ -15,8 +15,3 @@ size = 15
 [[keyboard.bindings]]
 key = "¥"
 chars = "\\"
-
-[[keyboard.bindings]]
-key = "Return"
-mods = "Shift"
-chars = "\u001B\r"

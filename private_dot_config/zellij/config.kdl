@@ -451,7 +451,7 @@ default_mode "locked"
 // (Requires restart)
 // Default: true (if the host terminal supports it)
 // 
-support_kitty_keyboard_protocol false
+// support_kitty_keyboard_protocol false
  
 // Enable or disable support for the Kitty Graphics Protocol, used to display images (the host terminal must also support it)
 // (Requires restart)
