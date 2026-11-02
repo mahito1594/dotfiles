@@ -68,8 +68,8 @@ Ask in a single prompt, putting the recommended option first with a
 
 1. **Claude reviewer model** — `opus` (recommended; large or security-sensitive
    changes) or `sonnet` (small, low-risk changes).
-2. **Codex model** — `gpt-6-sol` (recommended; pairs with opus) /
-   `gpt-5.6-terra` (pairs with sonnet) / `gpt-6-luna` (fast, cost-sensitive).
+2. **Codex model** — `gpt-6.1-sol` (recommended; pairs with opus) /
+   `gpt-6.1-terra` (pairs with sonnet) / `gpt-6-luna` (fast, cost-sensitive).
    `gpt-6-astra`, older generations, or anything else the user names go through
    the free-text option.
 3. **Codex reasoning effort** — `high` (recommended) / `medium` / `xhigh`.
@@ -83,24 +83,25 @@ After the answers come back, **validate the combination before proceeding**:
 conflict and re-ask the conflicting item — do not silently proceed or silently
 substitute a different value.
 
-Coherent pairs, for reference: `opus` × `gpt-6-sol` × `high` (flagship tier) and
-`sonnet` × `gpt-5.6-terra` × `medium` (balanced tier). Mixed pairs are legitimate
+Coherent pairs, for reference: `opus` × `gpt-6.1-sol` × `high` (flagship tier) and
+`sonnet` × `gpt-6.1-terra` × `medium` (balanced tier). Mixed pairs are legitimate
 when the change calls for it — the questions above never force a pairing.
 
 <!--
-  MODEL MAINTENANCE POINT — current-generation options listed as of 2026-09. This
+  MODEL MAINTENANCE POINT — current-generation options listed as of 2026-11. This
   block is the single place model names live in this skill; update it here when a
   generation changes rather than scattering names through the phases. Do NOT inherit
   `~/.codex/config.toml` (it lags) and do NOT parse `models_cache.json` (internal,
-  schema-unstable) — list the options here and let the user pick.
-  Codex: gpt-6-astra=premium, gpt-6-sol=flagship, gpt-5.6-terra=balanced,
+  schema-unstable) — list the options here and let the user pick. When updating,
+  check the current catalog by hand with `codex debug models`.
+  Codex: gpt-6-astra=premium, gpt-6.1-sol=flagship, gpt-6.1-terra=balanced,
   gpt-6-luna=fast.
   Claude: opus (Opus 5.5) is the code-review flagship; sonnet is the balanced tier; fable is
   a premium exception (always-on thinking, no prefill) — explicit-request only.
   fable's Codex counterpart is gpt-6-astra, likewise explicit-request only.
 -->
 
-Codex model options: `gpt-6-sol` (flagship) · `gpt-5.6-terra` (balanced) ·
+Codex model options: `gpt-6.1-sol` (flagship) · `gpt-6.1-terra` (balanced) ·
 `gpt-6-luna` (fast) · `gpt-6-astra` (premium, explicit request only) · or a
 specific/older model the user names.
 
