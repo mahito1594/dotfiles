@@ -32,3 +32,4 @@ LICENSE
 !.pi/agent/settings.json
 !.pi/agent/mcp.json
 !.pi/agent/sandbox.json
+!.pi/agent/keybindings.json

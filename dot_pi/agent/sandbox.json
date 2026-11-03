@@ -1,42 +1,69 @@
 {
   "enabled": true,
-  "allowBrowserProcess": true,
+  "enableAccessRequestTool": true,
+  "sandboxUserShell": false,
   "network": {
     "allowLocalBinding": true,
-    "allowAllUnixSockets": true,
+    "allowSSHAgentSocket": true,
     "allowedDomains": [
-      "npmjs.org",
-      "*.npmjs.org",
+      "localhost",
+      "127.0.0.1",
+      "mise.jdx.dev",
+      "registry.npmjs.org",
+      "github.com",
+      "*.github.com",
+      "*.githubusercontent.com",
+      "crates.io",
+      "*.crates.io",
       "pypi.org",
       "*.pypi.org",
-      "github.com",
-      "*.github.com"
-    ],
-    "deniedDomains": []
+      "files.pythonhosted.org",
+      "rubygems.org",
+      "*.rubygems.org"
+    ]
   },
   "filesystem": {
-    "denyRead": [
-      "/Users",
-      "/home"
-    ],
     "allowRead": [
-      ".",
-      "~/.pi",
-      "~/.config",
-      "~/.local",
-      "Library",
-      "~/.agents/skills"
+      "~/.pi/agent/skills",
+      "~/.pi/agent/npm",
+      "~/.pi/agent/git",
+      "~/.pi/agent/extensions",
+      "~/.agents/skills",
+      "~/.config/mise",
+      "~/.config/git",
+      "~/.config/gh",
+      "~/.config/cargo",
+      "~/.local/share/rustup",
+      "~/.local"
     ],
     "allowWrite": [
       ".",
       "/tmp",
-      "/private/tmp"
+      "/private/tmp",
+      "~/.crit",
+      "~/notes",
+      "~/.cache/mise",
+      "~/.npm",
+      "~/.cache/node",
+      "~/.local/share/pnpm",
+      "~/.cache/pnpm",
+      "~/.config/cargo/registry",
+      "~/.config/cargo/git",
+      "~/.config/cargo/.package-cache",
+      "~/.cache/uv",
+      "~/.cache/gem",
+      "~/.cache/bundle",
+      "~/.cache/rubocop_cache"
     ],
     "denyWrite": [
       ".env",
+      "**/.env",
       ".env.*",
+      "**/.env.*",
       "*.pem",
-      "*.key"
+      "**/*.pem",
+      "*.key",
+      "**/*.key"
     ]
   }
 }
