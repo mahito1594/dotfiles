@@ -1,44 +1,31 @@
 # dotfiles
 
-[chezmoi](https://www.chezmoi.io) で管理しています。
+[chezmoi](https://www.chezmoi.io) 管理の dotfiles。
+設定は XDG 配下に配置し、CLI ツールは `mise` でインストールする。
 
-## Daily operation
+## セットアップ
 
-TBA.
-
-## Setup
-
-### Install (macOS)
+新しいマシンで順に実行する。
 
 ```bash
-brew install chezmoi
-chezmoi init git@github.com:mahito1594/dotfiles.git
+brew install chezmoi mise
+brew install --cask alacritty ghostty font-plemol-jp-nf font-moralerspace-hw-jpdoc
+chezmoi init --apply git@github.com:mahito1594/dotfiles.git
 ```
 
-#### Other tools
-
-```bash
-brew install mise
-brew install --cask alacritty ghostty font-plemol-jp-nf
-```
-
-## Configuration
-
-### Zsh
-
-`$HOME/.zshenv` に以下を記述します:
+chezmoi 管理外の `$HOME/.zshenv` だけは手で作る:
 
 ```sh
 export ZDOTDIR=${ZDOTDIR:-$HOME/.config/zsh}
 [ -f $ZDOTDIR/.zshenv ] && source $ZDOTDIR/.zshenv
 ```
 
-### Claude Code
-
-#### [codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp)
-
-mise で `github:DeusData/codebase-memory-mcp` をインストールした後、MCP サーバーを設定します:
+シェルを開き直すと `.zprofile` が Homebrew の `shellenv` と`mise activate zsh --shims` を評価するので、続けてツールを入れる:
 
 ```bash
-claude mcp add --scope user --transport stdio codebase-memory-mcp -- codebase-memory-mcp
+mise install
 ```
+
+> [!INFO]
+> 初回の `.zshrc` が sheldon / fzf / worktrunk のキャッシュを作る。
+> `mise install` より前に開いたシェルはプロンプトや補完が欠けるため開き直すこと。
