@@ -35,6 +35,7 @@ terraform = "latest"
 yazi = "latest"
 zizmor = "latest"
 "packslip:github.com/max-sixty/worktrunk" = "latest"
+"github:docker/sbx-releases" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = []

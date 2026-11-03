@@ -1,0 +1,20 @@
+{
+  "$schema": "https://pi.dev/schemas/settings.schema.json",
+  "defaultProvider": "synthetic",
+  "defaultModel": "syn:large:text",
+  "defaultThinkingLevel": "medium",
+  "packages": [
+    "git:github.com/DietrichGebert/ponytail",
+    {
+      "source": "npm:@aliou/pi-synthetic",
+      "extensions": [
+        "+extensions/provider/index.ts",
+        "+extensions/web-search/index.ts",
+        "+extensions/command-quotas/index.ts",
+        "-extensions/usage-status/index.ts",
+        "-extensions/quota-warnings/index.ts"
+      ]
+    }
+  ],
+  "hideThinkingBlock": true
+}

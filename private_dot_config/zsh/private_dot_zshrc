@@ -287,6 +287,15 @@ function killport() {
   esac
 }
 
+sbx-pi() {
+  sbx run \
+    "git+https://github.com/docker/sbx-kits-contrib.git#ref=v3&dir=pi" \
+    --kit sbx/mise:latest \
+    --kit "${XDG_CONFIG_HOME}/docker-sandbox-kit/pi-synthetic" \
+    --kit-arg pi.version=${PI_VERION:-1.5.0} \
+    "$@"
+}
+
 ## alias
 if type ghq &>/dev/null && type fzf &>/dev/null; then
     alias repo='cd $(ghq list -p | fzf)'

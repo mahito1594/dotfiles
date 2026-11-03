@@ -1,0 +1,30 @@
+# syntax=docker/sandbox-kit:3
+schemaVersion: "3"
+kind: mixin
+displayName: Pi Configuration
+description: Personal Pi configuration with Synthetic
+
+build: |
+  FROM scratch
+  COPY --chown=1000:1000 files/ /home/agent/.pi/agent/
+
+capabilities:
+  - type: com.docker.sandbox/network-policy@1
+    config:
+      runtime:
+        allow:
+          - pi.dev
+          - api.synthetic.new
+
+  - type: com.docker.sandbox/credential@1
+    optional: true
+    config:
+      service: synthetic
+      phase: runtime
+      apiKey:
+        name: SYNTHETIC_API_KEY
+        proxyManaged: true
+        inject:
+          - domain: api.synthetic.new
+            header: Authorization
+            format: "Bearer %s"
