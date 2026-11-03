@@ -5,9 +5,6 @@ export XDG_STATE_HOME=$HOME/.local/state
 
 export PATH="${HOME}/.local/bin:${PATH}"
 
-# Zim
-export ZIM_CONFIG_FILE="${XDG_CONFIG_HOME}/zsh/.zimrc"
-
 # asdf
 export ASDF_CONFIG_FILE="${XDG_CONFIG_HOME}/asdf/asdfrc"
 export ASDF_DATA_DIR="${XDG_DATA_HOME}/asdf"
@@ -33,6 +30,9 @@ export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
 export BUNDLE_USER_CONFIG="${XDG_CONFIG_HOME}/bundle"
 export BUNDLE_USER_CACHE="${XDG_CACHE_HOME}/bundle"
 export BUNDLE_USER_PLUGIN="${XDG_DATA_HOME}/bundle"
+
+# Ruby#Rubocop
+export RUBOCOP_CACHE_ROOT="${XDG_CACHE_HOME}/rubocop_cache"
 
 # Rust#Cargo
 export CARGO_HOME="${XDG_CONFIG_HOME}/cargo"
