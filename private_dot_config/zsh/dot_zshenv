@@ -32,7 +32,7 @@ export BUNDLE_USER_CACHE="${XDG_CACHE_HOME}/bundle"
 export BUNDLE_USER_PLUGIN="${XDG_DATA_HOME}/bundle"
 
 # Ruby#Rubocop
-export RUBOCOP_CACHE_ROOT="${XDG_CACHE_HOME}/rubocop_cache"
+export RUBOCOP_CACHE_ROOT="${XDG_CACHE_HOME}"
 
 # Rust#Cargo
 export CARGO_HOME="${XDG_CONFIG_HOME}/cargo"
