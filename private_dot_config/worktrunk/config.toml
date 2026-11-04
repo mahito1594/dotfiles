@@ -4,24 +4,26 @@ worktree-path = "~/worktrunk/{{ owner }}/{{ repo }}/{{ branch | sanitize }}"
 copy = "wt step copy-ignored --require-include"
 
 [aliases]
-# Pick worktrees/branches with fzf and remove them.
+# Pick worktrees with fzf and remove them along with their branches.
 # Merged ones are removed without a prompt; unmerged ones need confirmation and
 # are removed with -D. Worktrees with uncommitted changes are skipped, because
 # -f would discard files git cannot recover.
 rmi = '''
 set -eu
 export d={{ default_branch }}
-rows=$(wt list --format=json --branches | jq -r --arg d "$d" '
+rows=$(wt list --format=json | jq -r --arg d "$d" '
   .items[]
   | select(.branch != null and .branch != $d and (.worktree.main | not))
   | (if (.worktree.changes // {}) | [.staged, .modified, .untracked, .renamed, .deleted, .conflicted] | any then "dirty"
      elif .display.state == "empty" or .display.state == "integrated" then "merged"
      else "unmerged" end) as $k
-  | [.branch, $k, .display.symbols] | @tsv')
-[ -n "$rows" ] || { echo "no removable branches"; exit 0; }
-sel=$(printf '%s\n' "$rows" | fzf --multi --delimiter='\t' \
+  | [.branch, $k, .display.symbols] | @tsv' | column -t -s "$(printf '\t')")
+[ -n "$rows" ] || { echo "no removable worktrees"; exit 0; }
+# Columns are space-aligned (fzf expands raw tabs to 8-column stops); branch
+# names contain no whitespace, and symbols stay last so an empty one is harmless.
+sel=$(printf '%s\n' "$rows" | fzf --multi \
   --preview 'git diff "$d"...{1} | delta --width="$FZF_PREVIEW_COLUMNS"') || exit 0
-pick() { printf '%s\n' "$sel" | awk -F'\t' -v k="$1" '$2 == k { print $1 }'; }
+pick() { printf '%s\n' "$sel" | awk -v k="$1" '$2 == k { print $1 }'; }
 merged=$(pick merged); unmerged=$(pick unmerged); dirty=$(pick dirty)
 if [ -n "$dirty" ]; then
   echo "skipped (uncommitted changes; commit or discard them first):"
