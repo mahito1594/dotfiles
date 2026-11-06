@@ -10,6 +10,15 @@ impossible, say so; when it is possible, verify — never hedge.
 Outward-facing content (issue/PR comments, published docs): drop unverified
 claims or get explicit confirmation before posting.
 
+## Blast radius
+
+For a change to anything the type system sees — a signature, a type or
+enum shape, an export, generated API types — make the edit first and let
+the project's type check, run across all packages and test targets,
+enumerate the call sites; it resolves same-named symbols by type, which
+grep cannot. Grep covers only what the checker never sees: strings,
+comments, config, and untyped code.
+
 ## Response Default
 
 Questions are requests for information, not for changes — answer only.
@@ -30,29 +39,30 @@ ADR, source with new comments), pass its path — nothing else — to the
 `session-residue:residue-check` agent (if unavailable, re-read the file
 as an outside reader), then verify each finding and fix or dismiss it.
 
-## Language by audience
+## Language
 
-- Written for the user to read, approve, or decide on (plan files, handoff
-  notes, discussion summaries, review findings): Japanese.
-- Shipped with the repository (code, comments, commits, ADRs, docs): the
-  project's convention.
+Repository content (code, comments, commits, ADRs, docs) follows the
+project's convention, regardless of the response language setting.
 
 ## Tools & Environment
+
+### Sandbox
+
+A sandbox-exempt command stays exempt only as the whole call: anything
+joined to it (a pipe, `&&`, `cd`, even inside quotes) or placed before
+its subcommand (`git -C`) sandboxes the entire call, including the
+processes it spawns.
+
+On "Operation not permitted" or a credential, host-key, proxy, TLS, or
+DNS error, rerun the failing command alone (`cd` in its own call first)
+— the intended route out of the sandbox, not a workaround. If that is
+impossible or still fails, quote the error and give the user
+`! <command>`.
 
 ### Git
 
 On unpushed branches, fold follow-up fixes into the commit they belong to
 (amend/fixup); new commits are for new logical changes. Ask before rewriting history that has been pushed.
-
-### Sandbox
-
-Run anything that needs the network or credentials as a call of its own:
-the command alone, with no other shell syntax (not even inside quotes) and
-no options before the subcommand (`git -C`). Anything more runs sandboxed.
-
-- To change directory, `cd` in a separate call first.
-- Sandboxed failures look like credential, host-key, TLS, or DNS errors;
-  retry once bare before concluding anything.
 
 ### Subagents
 
@@ -64,15 +74,6 @@ only when the task genuinely needs it, stating which model and why.
 Purpose-built agents follow their definition's model; if the definition
 pins none, treat them as generic. Override a definition's model only with
 a stated reason.
-
-### Blast radius
-
-For a change to anything the type system sees — a signature, a type or
-enum shape, an export, generated API types — make the edit first and let
-the project's type check, run across all packages and test targets,
-enumerate the call sites; it resolves same-named symbols by type, which
-grep cannot. Grep covers only what the checker never sees: strings,
-comments, config, and untyped code.
 
 ### Runtimes
 
