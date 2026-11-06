@@ -4,6 +4,7 @@
   "sandboxUserShell": false,
   "network": {
     "allowLocalBinding": true,
+    "allowUnauthenticatedSocksProxy": true,
     "allowSSHAgentSocket": true,
     "allowedDomains": [
       "localhost",
@@ -23,18 +24,22 @@
     ]
   },
   "filesystem": {
+    "denyRead": [
+      "/Users",
+      "/home"
+    ],
     "allowRead": [
+      "~/.local",
+      "~/Library",
+      "~/.agents/skills",
       "~/.pi/agent/skills",
       "~/.pi/agent/npm",
       "~/.pi/agent/git",
       "~/.pi/agent/extensions",
-      "~/.agents/skills",
       "~/.config/mise",
       "~/.config/git",
       "~/.config/gh",
-      "~/.config/cargo",
-      "~/.local/share/rustup",
-      "~/.local"
+      "~/.config/cargo"
     ],
     "allowWrite": [
       ".",
