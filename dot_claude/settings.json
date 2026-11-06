@@ -14,10 +14,6 @@
   "permissions": {
     "allow": [
       "WebSearch",
-      "WebFetch(domain:github.com)",
-      "WebFetch(domain:docs.github.com)",
-      "WebFetch(domain:api.github.com)",
-      "WebFetch(domain:registry.npmjs.org)",
       "Bash(git diff *)",
       "Bash(git log *)",
       "Bash(git status *)",
@@ -30,8 +26,6 @@
       "Bash(gh pr diff *)",
       "Bash(gh run list *)",
       "Bash(gh run view *)",
-      "Bash(rtk ls *)",
-      "Bash(rtk read *)",
       "Bash(rtk gh issue list *)",
       "Bash(rtk gh issue view *)",
       "Bash(rtk gh pr list *)",
@@ -45,8 +39,6 @@
       "Bash(fly logs *)",
       "Bash(crit comment *)",
       "Bash(crit plan *)",
-      "Bash(pnpm install)",
-      "Bash(pnpm install *)",
       "mcp__plugin_context7_context7__resolve-library-id",
       "mcp__plugin_context7_context7__query-docs"
     ],
@@ -75,7 +67,11 @@
       "Bash(git rebase *)",
       "Bash(git push *)",
       "Bash(gh issue create *)",
-      "Bash(gh pr create *)"
+      "Bash(gh pr create *)",
+      "Bash(rtk brew *)",
+      "Bash(rtk git push *)",
+      "Bash(rtk gh issue create *)",
+      "Bash(rtk gh pr create *)"
     ],
     "defaultMode": "auto"
   },
@@ -151,8 +147,9 @@
         "127.0.0.1",
         "mise.jdx.dev",
         "registry.npmjs.org",
-        "raw.githubusercontent.com",
-        "objects.githubusercontent.com"
+        "github.com",
+        "*.github.com",
+        "*.githubusercontent.com"
       ],
       "allowLocalBinding": true
     },
@@ -182,14 +179,17 @@
     "enableWeakerNetworkIsolation": true,
     "excludedCommands": [
       "docker *",
+      "rtk docker *",
       "git *",
       "rtk git *",
       "gh *",
       "rtk gh *",
       "aws *",
+      "rtk aws *",
       "fly *",
       "heroku *",
       "terraform *",
+      "rtk terraform *",
       "codex *",
       "crit *",
       "pnpm dev *"
