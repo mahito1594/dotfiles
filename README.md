@@ -26,6 +26,6 @@ export ZDOTDIR=${ZDOTDIR:-$HOME/.config/zsh}
 mise install
 ```
 
-> [!INFO]
+> [!NOTE]
 > 初回の `.zshrc` が sheldon / fzf / worktrunk のキャッシュを作る。
 > `mise install` より前に開いたシェルはプロンプトや補完が欠けるため開き直すこと。
