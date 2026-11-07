@@ -20,7 +20,8 @@
       "*.pypi.org",
       "files.pythonhosted.org",
       "rubygems.org",
-      "*.rubygems.org"
+      "*.rubygems.org",
+      "gitlab.com"
     ]
   },
   "filesystem": {
