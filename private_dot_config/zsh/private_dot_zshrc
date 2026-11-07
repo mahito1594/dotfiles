@@ -287,7 +287,7 @@ function killport() {
   esac
 }
 
-sbx-pi() {
+function sbx-pi() {
   sbx run \
     "git+https://github.com/docker/sbx-kits-contrib.git#ref=v3&dir=pi" \
     --kit sbx/mise:latest \
