@@ -145,11 +145,12 @@
       "allowedDomains": [
         "localhost",
         "127.0.0.1",
-        "mise.jdx.dev",
-        "registry.npmjs.org",
         "github.com",
         "*.github.com",
-        "*.githubusercontent.com"
+        "*.githubusercontent.com",
+        "mise.jdx.dev",
+        "registry.npmjs.org",
+        "index.rubygems.org"
       ],
       "allowLocalBinding": true
     },
@@ -160,6 +161,8 @@
         "~/.local/share/pnpm",
         "~/.cache/pnpm",
         "/private/tmp/pnpm-store-operation-locks-501",
+        "~/.cache/bundle",
+        "~/.local/share/mise/installs/ruby",
         "~/.crit",
         "~/notes"
       ]
