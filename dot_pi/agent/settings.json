@@ -1,9 +1,9 @@
 {
   "$schema": "https://pi.dev/schemas/settings.schema.json",
-  "lastChangelogVersion": "1.4.0",
+  "lastChangelogVersion": "1.5.0",
   "theme": "dark",
   "defaultProvider": "synthetic",
-  "defaultModel": "hf:deepseek-ai/DeepSeek-V4.1-Flash-1017",
+  "defaultModel": "syn:large:text",
   "defaultThinkingLevel": "medium",
   "packages": [
     "npm:pi-sandbox",
@@ -17,8 +17,28 @@
         "-extensions/usage-status/index.ts",
         "-extensions/quota-warnings/index.ts"
       ]
+    },
+    {
+      "source": "npm:pi-subagents",
+      "prompts": []
     }
   ],
+  "subagents": {
+    "agentOverrides": {
+      "researcher": {
+        "disabled": true
+      },
+      "evidence-auditor": {
+        "disabled": true
+      },
+      "worker": {
+        "disabled": true
+      },
+      "delegate": {
+        "disabled": true
+      }
+    }
+  },
   "tuiMode": "fullscreen",
   "hideThinkingBlock": true
 }
