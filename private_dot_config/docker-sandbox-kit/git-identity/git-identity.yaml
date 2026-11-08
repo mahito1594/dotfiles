@@ -1,0 +1,9 @@
+# syntax=docker/sandbox-kit:3
+schemaVersion: 3
+kind: mixin
+
+displayName: Git Identity
+description: Use the host Git author identity
+
+capabilities:
+  - type: com.docker.sandbox/git-identity@1
