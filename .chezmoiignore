@@ -17,6 +17,8 @@ LICENSE
 !.claude/skills/
 !.claude/skills/dual-review/**
 !.claude/agents/**
+!.claude/hooks/
+!.claude/hooks/sandbox-context.mjs
 
 # Opencode settings
 .config/opencode/**

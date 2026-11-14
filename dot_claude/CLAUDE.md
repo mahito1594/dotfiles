@@ -46,19 +46,6 @@ project's convention, regardless of the response language setting.
 
 ## Tools & Environment
 
-### Sandbox
-
-A sandbox-exempt command stays exempt only as the whole call: anything
-joined to it (a pipe, `&&`, `cd`, even inside quotes) or placed before
-its subcommand (`git -C`) sandboxes the entire call, including the
-processes it spawns.
-
-On "Operation not permitted" or a credential, host-key, proxy, TLS, or
-DNS error, rerun the failing command alone (`cd` in its own call first)
-— the intended route out of the sandbox, not a workaround. If that is
-impossible or still fails, quote the error and give the user
-`! <command>`.
-
 ### Git
 
 On unpushed branches, fold follow-up fixes into the commit they belong to
