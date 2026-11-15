@@ -102,8 +102,9 @@
       },
       {
         "id": "e661b89d-e4f5-4f0c-ba39-f56a56b345a4",
-        "type": "cache-timer",
-        "color": "yellow"
+        "type": "session-cost",
+        "color": "yellow",
+        "rawValue": true
       }
     ],
     [
@@ -128,8 +129,6 @@
       }
     ]
   ],
-  "flexMode": "full-minus-40",
-  "compactThreshold": 60,
   "colorLevel": 2,
   "defaultPaddingSide": "both",
   "inheritSeparatorColors": false,
