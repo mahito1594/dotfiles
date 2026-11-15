@@ -132,7 +132,6 @@
     "discuss@pb-cc-plugins": true,
     "orchestrate@pb-cc-plugins": true,
     "session-residue@pb-cc-plugins": true,
-    "ponytail@ponytail": true,
     "egm@egm": true
   },
   "extraKnownMarketplaces": {
@@ -152,12 +151,6 @@
       "source": {
         "source": "github",
         "repo": "mahito1594/pb-cc-plugins"
-      }
-    },
-    "ponytail": {
-      "source": {
-        "source": "github",
-        "repo": "DietrichGebert/ponytail"
       }
     },
     "egm": {

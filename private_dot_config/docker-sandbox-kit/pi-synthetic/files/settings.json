@@ -4,7 +4,6 @@
   "defaultModel": "syn:large:text",
   "defaultThinkingLevel": "medium",
   "packages": [
-    "git:github.com/DietrichGebert/ponytail",
     {
       "source": "npm:@aliou/pi-synthetic",
       "extensions": [

@@ -7,7 +7,6 @@
   "defaultThinkingLevel": "medium",
   "packages": [
     "npm:pi-sandbox",
-    "git:github.com/DietrichGebert/ponytail",
     {
       "source": "npm:@aliou/pi-synthetic",
       "extensions": [
