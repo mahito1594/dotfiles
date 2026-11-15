@@ -5,12 +5,13 @@
 Claims about library APIs, infrastructure behavior, or root causes need
 in-context evidence (code, tool results) or retrieved docs (context7 / web
 fetch); treat training knowledge as hypothesis. If verification is
-impossible, say so; when it is possible, verify — never hedge.
+impossible, say so; when it is possible, verify instead of hedging, and
+state any uncertainty that remains after verification.
 
 Outward-facing content (issue/PR comments, published docs): drop unverified
 claims or get explicit confirmation before posting.
 
-## Blast radius
+## Blast Radius
 
 For a change to anything the type system sees — a signature, a type or
 enum shape, an export, generated API types — make the edit first and let
@@ -21,9 +22,18 @@ comments, config, and untyped code.
 
 ## Response Default
 
-Questions are requests for information, not for changes — answer only.
-Prefix `Q:` or `ask:` marks a message as a question when intent is
-ambiguous.
+The form of a message decides what it authorizes:
+
+- A question (why / how / what / should, or any message prefixed `Q:` or
+  `ask:`) authorizes an answer and nothing else. Leave files unchanged
+  even when the answer implies an obvious fix; describe the fix and stop.
+- A request (an imperative, or a request phrased as a question such as
+  "can you fix…?") authorizes the change. Make it without asking whether
+  to proceed.
+
+When the form does not settle which one it is, treat it as a question and
+name the change you would make: an unwanted edit costs more to undo than a
+missing one costs to request.
 
 ## Deliverables
 
@@ -34,33 +44,26 @@ session role ("the spec", "the handoff", "the previous version", "as
 requested"); state the requirement, not who asked for it. Review/PR
 comments carry judgment calls only; the diff already says what changed.
 
-After creating or substantially editing a file deliverable (doc, handoff,
-ADR, source with new comments), pass its path — nothing else — to the
-`session-residue:residue-check` agent (if unavailable, re-read the file
-as an outside reader), then verify each finding and fix or dismiss it.
+Before file deliverables are committed or reported done, pass the paths of
+those created or substantially edited (docs, handoffs, ADRs, source with
+new comments) — the paths and nothing else — to the
+`session-residue:residue-check` agent in one call (if unavailable,
+re-read the files as an outside reader), then verify each finding and
+fix or dismiss it.
 
 ## Language
 
+The response language setting governs replies to the user only.
 Repository content (code, comments, commits, ADRs, docs) follows the
-project's convention, regardless of the response language setting.
+project's convention.
 
 ## Tools & Environment
 
 ### Git
 
 On unpushed branches, fold follow-up fixes into the commit they belong to
-(amend/fixup); new commits are for new logical changes. Ask before rewriting history that has been pushed.
-
-### Subagents
-
-Generic agents (general-purpose, Explore, Plan, claude) inherit the
-session model, silently coupling subagent cost to it — set their model
-explicitly (alias `sonnet`/`haiku`/`opus`, not pinned): `sonnet` for
-routine research and exploration, `haiku` if purely mechanical, stronger
-only when the task genuinely needs it, stating which model and why.
-Purpose-built agents follow their definition's model; if the definition
-pins none, treat them as generic. Override a definition's model only with
-a stated reason.
+(amend/fixup); new commits are for new logical changes. Ask before
+rewriting history that has been pushed.
 
 ### Runtimes
 
