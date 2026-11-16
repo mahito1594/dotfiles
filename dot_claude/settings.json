@@ -175,7 +175,9 @@
         "*.githubusercontent.com",
         "mise.jdx.dev",
         "registry.npmjs.org",
-        "index.rubygems.org"
+        "index.rubygems.org",
+        "crates.io",
+        "*.crates.io"
       ],
       "allowUnixSockets": [
         "~/Library/Application Support/rex/server.sock"
@@ -192,6 +194,9 @@
         "~/.cache/pnpm",
         "~/.cache/bundle",
         "~/.local/share/mise/installs/ruby",
+        "~/.config/cargo/registry",
+        "~/.config/cargo/git",
+        "~/Library/Caches/mbx",
         "~/.crit",
         "~/notes"
       ]
@@ -230,6 +235,7 @@
   "showClearContextOnPlanAccept": true,
   "plansDirectory": "./.claude/plans",
   "timeFormat": "auto",
+  "autoMemoryEnabled": false,
   "inputNeededNotifEnabled": true,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true

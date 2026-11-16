@@ -3,7 +3,7 @@ bun = "latest"
 dotnet = "10"
 node = "lts"
 pnpm = "latest"
-rust = { version = "latest", profile = "default", components = "rust-analyzer" }
+rust = { version = "latest", profile = "default", components = "rust-analyzer", mr_boxington = true }
 cargo-binstall = "latest"
 "aqua:astral-sh/uv" = "latest"
 "aqua:aws/aws-cli" = "latest"
@@ -36,6 +36,7 @@ yazi = "latest"
 zizmor = "latest"
 "packslip:github.com/max-sixty/worktrunk" = "latest"
 "github:docker/sbx-releases" = "latest"
+mr-boxington = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = []
