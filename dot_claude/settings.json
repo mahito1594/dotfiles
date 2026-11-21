@@ -57,7 +57,7 @@
     ],
     "ask": [
       "Bash(brew *)",
-      "Bash(mise *)",
+      "Bash(mise use *)",
       "Bash(fly apps*)",
       "Bash(fly deploy*)",
       "Bash(fly launch*)",
@@ -65,7 +65,6 @@
       "Bash(fly console*)",
       "Bash(fly sftp*)",
       "Bash(fly ssh*)",
-      "Bash(git rebase *)",
       "Bash(git push *)",
       "Bash(gh issue create *)",
       "Bash(gh pr create *)",
@@ -130,7 +129,6 @@
     "codex@openai-codex": true,
     "crit@crit": true,
     "discuss@pb-cc-plugins": true,
-    "orchestrate@pb-cc-plugins": true,
     "session-residue@pb-cc-plugins": true,
     "egm@egm": true
   },
@@ -228,6 +226,7 @@
       "terraform *",
       "rtk terraform *",
       "codex *",
+      "pi *",
       "crit *",
       "pnpm dev *"
     ]
