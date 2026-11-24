@@ -15,6 +15,7 @@ LICENSE
 !.claude/settings.json
 !.claude/skills/
 !.claude/skills/dual-review/**
+!.claude/skills/sakubun/**
 !.claude/agents/**
 !.claude/hooks/
 !.claude/hooks/sandbox-context.mjs

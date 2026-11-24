@@ -55,6 +55,8 @@ question.
 
 - Code comments, commit messages, and docs must stand on their own for a
   reader who was not in the session.
+- When writing or restructuring a structured document (README, design doc,
+  guide, spec), apply the `sakubun` skill.
 - Before committing file deliverables or reporting them as done, apply the
   `session-residue` skill to them (main session only).
 - Keep review and PR comments focused on judgment calls — the diff already
