@@ -1,35 +1,38 @@
 # AGENTS.md
 
-Prefer simple, explicit, robust solutions over clever or unnecessarily abstract ones.
-Provide architectural advice when useful, not only code changes.
+Prefer simple, explicit, robust solutions over clever or unnecessarily abstract
+ones. Offer architectural advice when useful, not just code changes.
 
 ## Language
 
-Replies to the user: Japanese unless asked otherwise.
-Shipped with a repository (code, comments, commits, docs): the project's convention.
+Reply to the user in Japanese unless asked otherwise. For repository content
+(code, comments, commits, docs), follow the project's conventions.
 
 ## Verification
 
-API details that can't be verified locally: say so.
+If you cannot verify API details locally, say so.
 
-## Implementation preferences
+## Implementation Preferences
 
-Prefer pure transformations, explicit data flow, and limited shared mutable state
-where they improve clarity. Follow the language, framework, and project style.
+Prefer pure transformations, explicit data flow, and minimal shared mutable
+state where they improve clarity. Follow the idioms and conventions of the
+language, framework, and project.
 
 ## Deliverables
 
-Comments, commit messages, and docs must be readable by someone who was not in
-the session: no positional references ("above", "as requested"); state the
-requirement.
+Comments, commit messages, and docs must stand on their own for a reader who
+was not in the session. Avoid conversation-dependent or positional references
+("above", "as requested"), and state the requirement explicitly.
 
-## Testing preferences
+## Testing Preferences
 
-Test observable behavior rather than implementation details. Prefer real collaborators
-when they are fast and deterministic; use mocks or fakes where boundaries are difficult
-to control. Avoid tests that break due to harmless refactoring.
+Test observable behavior rather than implementation details. Prefer real
+collaborators when they are fast and deterministic; use mocks or fakes where
+boundaries are hard to control. Avoid tests that break on harmless
+refactoring.
 
 ## Runtimes
 
-Tools are managed machine-wide by mise and shims are on PATH, so invoke them
-directly (no `mise exec`). Pin with `mise use <tool>@<version>`.
+Tools are managed machine-wide by `mise`, with shims on `PATH`. Invoke them
+directly (do not use `mise exec`), and pin versions with
+`mise use <tool>@<version>`.
