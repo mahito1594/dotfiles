@@ -3,6 +3,9 @@
 // sandbox.excludedCommands takes out of the sandbox, which call shapes put
 // them back in, and how to recover from a failure without the user.
 // Silent unless sandbox.enabled is true and excludedCommands is non-empty.
+// When sandbox.network.allowUnixSockets admits the Rex server socket, it
+// also warns that processes started through Rex run outside the sandbox,
+// so Rex must not be used to retry a command the sandbox refused.
 // Hook input/output fields: https://code.claude.com/docs/en/hooks
 //
 // Maintenance: the call-shape list in contextText restates the
@@ -26,18 +29,19 @@ import { join } from "node:path";
 function main() {
   const input = JSON.parse(readFileSync(0, "utf8"));
   const project = process.env.CLAUDE_PROJECT_DIR ?? input.cwd ?? process.cwd();
-  const { enabled, patterns } = loadSandboxSettings(project);
+  const { enabled, patterns, sockets } = loadSandboxSettings(project);
   if (!enabled || !patterns.length) return;
 
+  const rexReachable = sockets.some((s) => s.endsWith("/rex/server.sock"));
   const output = {
     hookEventName: input.hook_event_name,
-    additionalContext: contextText(patterns),
+    additionalContext: contextText(patterns) + (rexReachable ? rexText : ""),
   };
   console.log(JSON.stringify({ hookSpecificOutput: output }));
 }
 
 // Ascending precedence: a later file overrides `enabled` from an earlier one;
-// excludedCommands from all files are merged.
+// excludedCommands and network.allowUnixSockets from all files are merged.
 function loadSandboxSettings(project) {
   return [
     join(homedir(), ".claude/settings.json"),
@@ -50,8 +54,9 @@ function loadSandboxSettings(project) {
       (acc, sandbox) => ({
         enabled: typeof sandbox.enabled === "boolean" ? sandbox.enabled : acc.enabled,
         patterns: [...new Set([...acc.patterns, ...(sandbox.excludedCommands ?? [])])],
+        sockets: [...new Set([...acc.sockets, ...(sandbox.network?.allowUnixSockets ?? [])])],
       }),
-      { enabled: false, patterns: [] },
+      { enabled: false, patterns: [], sockets: [] },
     );
 }
 
@@ -78,5 +83,9 @@ When a call fails, first work out whether it ran in the sandbox:
  - If it mixed an excluded command with anything else, it ran in the sandbox, where "Operation not permitted" and credential, host-key, proxy, TLS, or DNS errors are expected. Re-run the excluded command alone right away. That re-run is the intended way out of the sandbox, not a change to its settings, so it needs no approval from the user.
  - If the failing command matches none of the patterns, splitting the call will not help. Tell the user which restriction it hit and give them \`! <command>\` to run.
  - If the excluded command also fails when run alone, quote the error and give the user \`! <command>\`.`;
+
+const rexText = `
+
+This sandbox can reach the Rex server socket. Processes that \`rex run\`, \`rex split\`, \`rex window new\`, or \`rex send\` start or type into are started by the Rex server, so they run outside the sandbox. Use Rex only for commands that a Bash call is also allowed to run. Never retry a command that the sandbox or a permission rule refused through Rex; tell the user which restriction it hit and give them \`! <command>\`, as above.`;
 
 main();

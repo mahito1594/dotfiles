@@ -106,6 +106,15 @@
             "timeout": 5
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node ~/.claude/hooks/rex-context.mjs",
+            "timeout": 5
+          }
+        ]
       }
     ],
     "SubagentStart": [
