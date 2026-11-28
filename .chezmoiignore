@@ -19,6 +19,7 @@ LICENSE
 !.claude/agents/**
 !.claude/hooks/
 !.claude/hooks/sandbox-context.mjs
+!.claude/hooks/rex-context.mjs
 
 # Opencode settings
 .config/opencode/**
