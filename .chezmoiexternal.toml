@@ -1,4 +1,0 @@
-[".config/alacritty/themes/catppuccin_macchiato.toml"]
-type = "file"
-url = "https://raw.githubusercontent.com/alacritty/alacritty-theme/refs/heads/master/themes/catppuccin_macchiato.toml"
-refreshPeriod = "672h"
